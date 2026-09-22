@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Rochel Accesorios - Joyitas de acero inoxidable y manillas tejidas.">
+<title>Rochel Accesorios</title>
+<style>
+:root {
+  --pink:#f4d7ed; --pink2:#fff7fc; --pink3:#d99bc9; --pink4:#efbddb; --pink5:#fbe6f3;
+  --dark:#252025; --muted:#746a72; --white:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;color:var(--dark);background:linear-gradient(180deg,#fff0f8 0%,#fce5f2 42%,#fff2f9 100%)}
+
+/* ===== HEADER ===== */
+header{position:sticky;top:0;z-index:10;background:rgba(255,244,250,.94);backdrop-filter:blur(10px);border-bottom:1px solid #e9c8df}
+.nav{max-width:1180px;margin:auto;min-height:82px;padding:8px 25px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo-mini{width:78px;height:78px;object-fit:contain;border-radius:50%;display:block}
+nav{display:flex;gap:25px;flex-wrap:wrap;justify-content:center}
+nav a{color:var(--dark);text-decoration:none;font-size:14px;font-weight:bold}
+nav a:hover{color:#a65d93}
+
+/* ===== HERO ===== */
+.hero{min-height:92vh;display:flex;align-items:center;justify-content:flex-start;position:relative;overflow:hidden;background:#eee;color:#fff}
+.hero-photo{position:absolute;inset:0;background-image:url("https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/img/logos/portada_rochel.jpeg");background-size:cover;background-position:center center;transform:translate3d(0,0,0) scale(1.06)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(91,45,76,.52) 0%,rgba(137,73,113,.25) 48%,rgba(255,218,239,.08) 100%)}
+.hero-content{position:relative;z-index:1;max-width:650px;margin-left:clamp(25px,8vw,110px);padding:42px 40px;text-align:left;background:rgba(255,246,251,.88);border:1px solid rgba(255,255,255,.85);border-radius:28px;box-shadow:0 18px 55px rgba(103,54,88,.18);color:#3c2937}
+.eyebrow{display:inline-block;font-size:12px;letter-spacing:4px;font-weight:bold;margin-bottom:18px;opacity:.95}
+.hero h1{font-family:Georgia,serif;font-size:clamp(45px,7vw,78px);line-height:.98;letter-spacing:-2px;margin-bottom:20px}
+.hero p{font-size:18px;line-height:1.6;max-width:500px;margin-bottom:30px;color:var(--muted)}
+
+/* ===== BOTONES ===== */
+.buttons{display:flex;justify-content:flex-start;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 25px;border-radius:30px;text-decoration:none;font-weight:bold;font-size:13px;transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.primary{background:#c27aaa;color:white;box-shadow:0 7px 18px rgba(165,89,143,.22)}
+.secondary{background:rgba(255,255,255,.9);color:#7d466f;border:1px solid #fff}
+
+/* ===== SECCIONES ===== */
+section{max-width:1180px;margin:auto;padding:82px 25px;position:relative;background:rgba(255,241,248,.48)}
+.title{text-align:center;margin-bottom:40px}
+.title h2{font-family:Georgia,serif;font-size:38px;margin-bottom:8px;color:#6f4161}
+.title p{color:var(--muted)}
+
+/* ===== FILTROS ===== */
+.filters-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:15px;margin-bottom:35px;padding:15px 22px;background:linear-gradient(135deg,#fff7fc,#fbe6f3);border:1px solid var(--pink3);border-radius:18px}
+.filter-group{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{background:white;color:#7d466f;border:1px solid var(--pink3);padding:9px 20px;border-radius:25px;font-size:13px;font-weight:bold;cursor:pointer;transition:all .25s}
+.filter-btn:hover{background:var(--pink5)}
+.filter-btn.active{background:#c27aaa;color:white;border-color:#c27aaa;box-shadow:0 4px 12px rgba(165,89,143,.25)}
+#sort-select{background:white;color:#7d466f;border:1px solid var(--pink3);padding:9px 15px;border-radius:25px;font-size:13px;font-weight:bold;cursor:pointer;outline:none}
+
+/* ===== PRODUCTOS ===== */
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.product{border:1px solid var(--pink3);border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#fffafd,#fcebf5);box-shadow:0 10px 30px rgba(120,70,110,.10);position:relative}
+.product img{width:100%;height:310px;object-fit:cover;display:block}
+.info{padding:18px}
+.info h3{font-family:Georgia,serif;font-size:22px;margin-bottom:5px}
+.info p{font-size:14px;color:var(--muted);margin-bottom:12px}
+.detalles{font-size:12px;color:#999;margin:4px 0}
+.precios{display:flex;gap:8px;align-items:center;margin:8px 0}
+.precio-actual{font-weight:bold;color:#6f4161;font-size:18px}
+.btn-consultar{display:inline-block;background:#25D366;color:white;padding:8px 15px;border-radius:20px;text-decoration:none;font-size:13px;font-weight:bold;margin-top:8px}
+.btn-consultar:hover{background:#1da851}
+.empty-msg{grid-column:1 / -1;text-align:center;color:#999;padding:40px 20px;font-style:italic}
+
+/* ===== ABOUT ===== */
+.about{max-width:none;background:linear-gradient(135deg,#f9dbea 0%,#fff0f8 48%,#f5d3e5 100%)}
+.about-inner{max-width:850px;margin:auto;text-align:center}
+.about-inner p{font-size:18px;color:#625963;line-height:1.8}
+
+/* ===== CONTACTO ===== */
+.contact-card{max-width:700px;margin:auto;text-align:center;padding:35px;border:1px solid var(--pink3);border-radius:24px;background:linear-gradient(145deg,#fff,#fff4fa);box-shadow:0 12px 35px rgba(120,70,110,.09)}
+.contact-card h3{font-family:Georgia,serif;font-size:28px;margin-bottom:18px}
+.contact-card p{color:var(--muted);margin:10px}
+.contact-card a{color:#a65d93;font-weight:bold;text-decoration:none}
+
+/* ===== FORMULARIO DE REGISTRO ===== */
+.form-registro{max-width:640px;margin:auto;padding:32px;background:linear-gradient(145deg,#fff,#fff4fa);border:1px solid var(--pink3);border-radius:24px;box-shadow:0 12px 35px rgba(120,70,110,.09);display:flex;flex-direction:column;gap:18px}
+.form-row{display:flex;flex-direction:column;gap:6px}
+.form-row label{font-size:14px;font-weight:bold;color:#6f4161}
+.form-row input[type=text],
+.form-row input[type=email],
+.form-row input[type=tel],
+.form-row input[type=date],
+.form-row select,
+.form-row textarea{padding:11px 14px;border:1px solid #e9c8df;border-radius:12px;font-size:14px;font-family:inherit;background:#fff;color:var(--dark);outline:none;transition:.2s}
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus{border-color:#c27aaa;box-shadow:0 0 0 3px rgba(194,122,170,.15)}
+.checkbox-group,
+.radio-group{display:flex;flex-wrap:wrap;gap:14px;font-size:14px}
+.checkbox-group label,
+.radio-group label{display:flex;align-items:center;gap:6px;cursor:pointer;font-weight:normal}
+.checkbox-inline label{display:flex;align-items:center;gap:8px;font-weight:normal;font-size:13px}
+.form-msg{margin-top:8px;font-size:14px;text-align:center;min-height:20px}
+.form-msg.ok{color:#1da851;font-weight:bold}
+.form-msg.err{color:#c0392b;font-weight:bold}
+#btn-enviar{border:none;cursor:pointer;align-self:center;padding:13px 40px}
+#btn-enviar:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+/* ===== FOOTER ===== */
+footer{background:linear-gradient(135deg,#7b4a68,#9b6385);color:#eee;text-align:center;padding:28px;font-size:13px}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:800px){
+  .nav{flex-direction:column}
+  nav{gap:12px}
+  .products{grid-template-columns:1fr}
+  .hero{min-height:78vh}
+  .hero-content{margin:25px auto;padding:32px 25px}
+  section{padding:65px 18px}
+  .filters-bar{flex-direction:column;align-items:stretch}
+  .filter-group{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <img class="logo-mini" src="https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/img/logos/logo_rochel.png" alt="Rochel Accesorios">
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#registro">Registrate</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+
+<section class="hero">
+  <div class="hero-photo" aria-hidden="true"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="eyebrow">ROCHEL ACCESORIOS</span>
+    <h1>Brilla a tu manera</h1>
+    <p>Joyitas de acero inoxidable y detalles tejidos pensados para acompañarte.</p>
+    <div class="buttons">
+      <a class="btn primary" href="#catalogo">DESCUBRIR COLECCIÓN</a>
+      <a class="btn secondary" href="https://wa.me/59163501104?text=Hola%20Rochel%20Accesorios%2C%20quiero%20consultar%20por%20un%20producto." target="_blank">PEDIR POR WHATSAPP</a>
+    </div>
+  </div>
+</section>
+
+<section id="catalogo">
+  <div class="title">
+    <h2>Catálogo</h2>
+    <p>Todas nuestras piezas</p>
+  </div>
+
+  <div class="filters-bar">
+    <div class="filter-group">
+      <button class="filter-btn active" data-categoria="todo">Todo</button>
+      <button class="filter-btn" data-categoria="aretes">Aretes</button>
+      <button class="filter-btn" data-categoria="pendientes">Pendientes</button>
+      <button class="filter-btn" data-categoria="manillas">Manillas</button>
+      <button class="filter-btn" data-categoria="collares">Collares</button>
+    </div>
+    <div class="filter-group">
+      <select id="sort-select">
+        <option value="recientes">Más recientes</option>
+        <option value="precio-asc">Precio: menor a mayor</option>
+        <option value="precio-desc">Precio: mayor a menor</option>
+        <option value="nombre">Nombre (A-Z)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="products" id="products-container"></div>
+</section>
+
+<section class="about" id="nosotros">
+  <div class="about-inner">
+    <div class="title">
+      <h2>Sobre Rochel</h2>
+      <p>Hecho con amor en Santa Cruz, Bolivia</p>
+    </div>
+    <p>Somos un emprendimiento dedicado a crear accesorios únicos con acero inoxidable y detalles tejidos a mano. Cada pieza está pensada para acompañarte en tu día a día.</p>
+  </div>
+</section>
+
+<!-- ===== FORMULARIO DE REGISTRO ===== -->
+<section id="registro">
+  <div class="title">
+    <h2>Registrate</h2>
+    <p>Contanos un poco sobre vos y te contactamos 💗</p>
+  </div>
+
+  <form id="form-registro" class="form-registro" novalidate>
+    <div class="form-row">
+      <label>Nombre completo *</label>
+      <input type="text" name="nombre" required minlength="3" placeholder="Ej: Rochel Tabor">
+    </div>
+
+    <div class="form-row">
+      <label>Correo electrónico *</label>
+      <input type="email" name="email" required placeholder="nombre@correo.com">
+    </div>
+
+    <div class="form-row">
+      <label>Número de teléfono *</label>
+      <input type="tel" name="telefono" required placeholder="+591 70000000" pattern="[\d\s\+\-\(\)]{7,20}">
+    </div>
+
+    <div class="form-row">
+      <label>Dirección (ciudad, zona, calle y número)</label>
+      <input type="text" name="direccion" placeholder="Av. Ejemplo #123, zona Centro">
+    </div>
+
+    <div class="form-row">
+      <label>Ciudad *</label>
+      <select name="ciudad" required>
+        <option value="">Seleccioná una ciudad</option>
+        <option>Santa Cruz de la Sierra</option>
+        <option>La Paz</option>
+        <option>Cochabamba</option>
+        <option>Sucre</option>
+        <option>Oruro</option>
+        <option>Potosí</option>
+        <option>Tarija</option>
+        <option>Trinidad</option>
+        <option>Cobija</option>
+        <option>Otra</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label>Fecha de nacimiento</label>
+      <input type="date" name="fecha_nacimiento">
+    </div>
+
+    <div class="form-row">
+      <label>¿Qué producto te interesa? *</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="intereses" value="Aretes"> Aretes</label>
+        <label><input type="checkbox" name="intereses" value="Pendientes"> Pendientes</label>
+        <label><input type="checkbox" name="intereses" value="Manillas"> Manillas</label>
+        <label><input type="checkbox" name="intereses" value="Collares"> Collares</label>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>¿Cómo preferís que te contactemos? *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="contacto_preferido" value="Correo" required> Correo</label>
+        <label><input type="radio" name="contacto_preferido" value="Teléfono"> Teléfono</label>
+        <label><input type="radio" name="contacto_preferido" value="WhatsApp"> WhatsApp</label>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Comentario o consulta (opcional)</label>
+      <textarea name="comentario" rows="4" placeholder="¿Algo que quieras preguntarnos?"></textarea>
+    </div>
+
+    <div class="form-row checkbox-inline">
+      <label>
+        <input type="checkbox" name="acepta_terminos" required>
+        Acepto los términos y la política de privacidad *
+      </label>
+    </div>
+
+    <button type="submit" class="btn primary" id="btn-enviar">ENVIAR REGISTRO</button>
+    <p id="form-msg" class="form-msg"></p>
+  </form>
+</section>
+
+<section id="contacto">
+  <div class="title">
+    <h2>¿Te gustó algún diseño?</h2>
+    <p>Escríbenos para consultar modelos y disponibilidad.</p>
+  </div>
+  <div class="contact-card">
+    <h3>Rochel Accesorios 💗</h3>
+    <p>📱 WhatsApp: <a href="https://wa.me/59163501104" target="_blank">63501104</a></p>
+    <p>📷 Instagram: <a href="https://www.instagram.com/rochelaccesorios.2026/" target="_blank">@rochelaccesorios.2026</a></p>
+    <p>📍 Santa Cruz, Bolivia</p>
+    <div class="buttons" style="margin-top:22px;justify-content:center">
+      <a class="btn primary" href="https://wa.me/59163501104" target="_blank">ESCRÍBENOS</a>
+      <a class="btn secondary" href="https://www.instagram.com/rochelaccesorios.2026/" target="_blank">VER INSTAGRAM</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>© 2026 Rochel Accesorios · Santa Cruz, Bolivia</footer>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzpi44k8sue8Gd8H2roDPbk7PSvpxIMcQF73Y8taox6ua70C7ewRCkV_M_25aMF8d-q/exec';
+const WHATSAPP = '59163501104';
+
+let allProducts = [];
+let currentCategoria = 'todo';
+let currentSort = 'recientes';
+
+async function loadProducts() {
+  const container = document.getElementById('products-container');
+  if (!container) return;
+
+  try {
+    const response = await fetch(SCRIPT_URL);
+    allProducts = await response.json();
+
+    if (allProducts.error) {
+      console.error(allProducts.error);
+      container.innerHTML = '<p class="empty-msg">Error cargando productos.</p>';
+      return;
+    }
+
+    renderProducts();
+    setupFilters();
+  } catch (error) {
+    console.error('Error:', error);
+    container.innerHTML = '<p class="empty-msg">Error de conexión.</p>';
+  }
+}
+
+function renderProducts() {
+  const container = document.getElementById('products-container');
+
+  let filtered = allProducts;
+  if (currentCategoria !== 'todo') {
+    filtered = allProducts.filter(p => p.categoria === currentCategoria);
+  }
+
+  filtered = [...filtered].sort((a, b) => {
+    switch (currentSort) {
+      case 'precio-asc': return Number(a.precio) - Number(b.precio);
+      case 'precio-desc': return Number(b.precio) - Number(a.precio);
+      case 'nombre': return (a.nombre || '').localeCompare(b.nombre || '');
+      default: return 0;
+    }
+  });
+
+  container.innerHTML = '';
+
+  if (filtered.length === 0) {
+    container.innerHTML = '<p class="empty-msg">No hay productos en esta categoría.</p>';
+    return;
+  }
+
+  filtered.forEach(p => {
+    const mensaje = encodeURIComponent(`Hola, me interesa: ${p.nombre}`);
+    const wa = `https://wa.me/${WHATSAPP}?text=${mensaje}`;
+    const precioActual = `Bs. ${Number(p.precio).toLocaleString('es-BO')}`;
+    const detalles = [p.material, p.color].filter(Boolean).join(' · ');
+
+    container.innerHTML += `
+      <div class="product">
+        <img src="${p.url_imagen}" alt="${p.nombre}" loading="lazy"
+             onerror="this.src='https://placehold.co/300x310/fbe6f3/7d466f?text=Sin+imagen'">
+        <div class="info">
+          <h3>${p.nombre}</h3>
+          <p>${p.descripcion || ''}</p>
+          <p class="detalles">${detalles}</p>
+          <div class="precios">
+            <span class="precio-actual">${precioActual}</span>
+          </div>
+          <a href="${wa}" target="_blank" class="btn-consultar">Consultar</a>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function setupFilters() {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCategoria = btn.dataset.categoria;
+      renderProducts();
+    });
+  });
+
+  const sortSelect = document.getElementById('sort-select');
+  if (sortSelect) {
+    sortSelect.addEventListener('change', e => {
+      currentSort = e.target.value;
+      renderProducts();
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadProducts);
+
+/* Parallax del hero */
+(function(){
+  const photo = document.querySelector('.hero-photo');
+  const hero = document.querySelector('.hero');
+  if (!photo || !hero || window.matchMedia('(max-width:800px)').matches) return;
+  let ticking = false;
+  function update(){
+    const rect = hero.getBoundingClientRect();
+    const progress = Math.max(-1, Math.min(1, (window.innerHeight/2 - rect.top) / (window.innerHeight + rect.height)));
+    photo.style.transform = 'translate3d(0,' + (progress*70) + 'px,0) scale(1.06)';
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, {passive:true});
+  update();
+})();
+
+/* ===== FORMULARIO DE REGISTRO ===== */
+const formRegistro = document.getElementById('form-registro');
+const formMsg = document.getElementById('form-msg');
+const btnEnviar = document.getElementById('btn-enviar');
+
+if (formRegistro) {
+  formRegistro.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formMsg.textContent = '';
+    formMsg.className = 'form-msg';
+
+    const intereses = [...formRegistro.querySelectorAll('input[name="intereses"]:checked')]
+                      .map(c => c.value).join(', ');
+    if (!intereses) {
+      formMsg.textContent = 'Seleccioná al menos un producto de interés.';
+      formMsg.classList.add('err');
+      return;
+    }
+
+    const data = {
+      nombre: formRegistro.nombre.value.trim(),
+      email: formRegistro.email.value.trim(),
+      telefono: formRegistro.telefono.value.trim(),
+      direccion: formRegistro.direccion.value.trim(),
+      ciudad: formRegistro.ciudad.value,
+      fecha_nacimiento: formRegistro.fecha_nacimiento.value,
+      intereses: intereses,
+      contacto_preferido: formRegistro.contacto_preferido.value,
+      comentario: formRegistro.comentario.value.trim(),
+      acepta_terminos: formRegistro.acepta_terminos.checked
+    };
+
+    btnEnviar.disabled = true;
+    btnEnviar.textContent = 'ENVIANDO...';
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      formMsg.textContent = '¡Registro enviado con éxito! Te contactaremos pronto 💗';
+      formMsg.classList.add('ok');
+      formRegistro.reset();
+
+    } catch (err) {
+      console.error(err);
+      formMsg.textContent = 'Hubo un error al enviar. Probá de nuevo.';
+      formMsg.classList.add('err');
+    } finally {
+      btnEnviar.disabled = false;
+      btnEnviar.textContent = 'ENVIAR REGISTRO';
+    }
+  });
+}
+</script>
+</body>
+</html>
