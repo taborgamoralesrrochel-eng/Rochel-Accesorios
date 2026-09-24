@@ -27,9 +27,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body {
   font-family: 'Quicksand', sans-serif;
   color: var(--texto);
@@ -37,33 +35,23 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
 }
-
 h1, h2, h3, .serif {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 600;
   letter-spacing: 0.5px;
 }
 
-/* ===== HEADER ===== */
 header {
   position: sticky;
   top: 0;
   z-index: 100;
   transition: box-shadow 0.3s;
 }
-header.scrolled {
-  box-shadow: 0 3px 14px rgba(176, 106, 143, 0.12);
-}
+header.scrolled { box-shadow: 0 3px 14px rgba(176, 106, 143, 0.12); }
 
 .topbar {
   background-color: #ffffff;
-  background-image: repeating-linear-gradient(
-    90deg,
-    #fce4ef 0px,
-    #fce4ef 6px,
-    #ffffff 6px,
-    #ffffff 16px
-  );
+  background-image: repeating-linear-gradient(90deg, #fce4ef 0px, #fce4ef 6px, #ffffff 6px, #ffffff 16px);
   border-bottom: 1px solid var(--dorado-suave);
 }
 .topbar-inner {
@@ -76,7 +64,6 @@ header.scrolled {
   align-items: center;
   gap: 20px;
 }
-
 .icon-btn {
   background: rgba(255, 255, 255, 0.85);
   border: none;
@@ -96,31 +83,11 @@ header.scrolled {
   color: var(--rosa-profundo);
   box-shadow: 0 4px 12px rgba(176, 106, 143, 0.2);
 }
-.topbar-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 6px;
-}
-.topbar-inner > .icon-btn:first-child {
-  justify-self: start;
-}
+.topbar-actions { display: flex; justify-content: flex-end; gap: 6px; }
+.topbar-inner > .icon-btn:first-child { justify-self: start; }
 
-.logo-center {
-  justify-self: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-.logo-img {
-  display: block;
-  height: 2cm;
-  width: auto;
-  max-width: 320px;
-  object-fit: contain;
-  pointer-events: none;
-  user-select: none;
-}
+.logo-center { justify-self: center; display: flex; align-items: center; justify-content: center; text-decoration: none; }
+.logo-img { display: block; height: 2cm; width: auto; max-width: 320px; object-fit: contain; pointer-events: none; user-select: none; }
 
 .menu-bar {
   background: linear-gradient(90deg, var(--rosa-fuerte) 0%, var(--rosa-profundo) 50%, var(--rosa-fuerte) 100%);
@@ -154,13 +121,9 @@ header.scrolled {
 }
 .menu-bar a:hover { color: var(--dorado-claro); }
 .menu-bar a:hover::after { width: 100%; left: 0; }
-.menu-bar .sep {
-  color: rgba(255, 255, 255, 0.5);
-  font-weight: 300;
-  font-size: 15px;
-}
+.menu-bar .sep { color: rgba(255, 255, 255, 0.5); font-weight: 300; font-size: 15px; }
 
-/* ===== PORTADA ===== */
+/* ===== PORTADA CON PARALLAX ===== */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -173,23 +136,21 @@ header.scrolled {
 }
 .hero-photo {
   position: absolute;
-  inset: -10% 0;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
   background-image: url("https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/img/logos/nueva_portada.png");
   background-size: cover;
   background-position: center 30%;
   background-repeat: no-repeat;
   will-change: transform;
-  transform: translate3d(0,0,0) scale(1.08);
+  transform: translate3d(0, 0, 0);
 }
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(176, 106, 143, 0.55) 0%,
-    rgba(217, 140, 179, 0.30) 45%,
-    rgba(201, 162, 39, 0.12) 100%
-  );
+  background: linear-gradient(120deg, rgba(176, 106, 143, 0.55) 0%, rgba(217, 140, 179, 0.30) 45%, rgba(201, 162, 39, 0.12) 100%);
 }
 .hero-content {
   position: relative;
@@ -238,13 +199,7 @@ header.scrolled {
   font-weight: 500;
 }
 
-/* ===== BOTONES ===== */
-.buttons {
-  display: flex;
-  justify-content: flex-start;
-  gap: 14px;
-  flex-wrap: wrap;
-}
+.buttons { display: flex; justify-content: flex-start; gap: 14px; flex-wrap: wrap; }
 .btn {
   display: inline-block;
   padding: 14px 28px;
@@ -271,7 +226,6 @@ header.scrolled {
 }
 .secondary:hover { background: var(--dorado-suave); border-color: var(--dorado); }
 
-/* ===== SECCIÓN INICIO ===== */
 .inicio {
   max-width: 1200px;
   margin: auto;
@@ -318,12 +272,7 @@ header.scrolled {
   font-weight: 700;
 }
 .inicio-texto h2 em { color: var(--dorado); font-style: italic; }
-.inicio-texto p {
-  font-size: 16px;
-  color: var(--texto-suave);
-  line-height: 1.8;
-  margin-bottom: 18px;
-}
+.inicio-texto p { font-size: 16px; color: var(--texto-suave); line-height: 1.8; margin-bottom: 18px; }
 .inicio-puntos { list-style: none; margin-top: 28px; }
 .inicio-puntos li {
   display: flex;
@@ -397,12 +346,7 @@ header.scrolled {
   font-weight: 700;
 }
 
-/* ===== CATÁLOGO ===== */
-.catalogo {
-  max-width: 1200px;
-  margin: auto;
-  padding: 90px 25px;
-}
+.catalogo { max-width: 1200px; margin: auto; padding: 90px 25px; }
 .title { text-align: center; margin-bottom: 45px; }
 .title h2 {
   font-family: 'Cormorant Garamond', serif;
@@ -526,7 +470,6 @@ header.scrolled {
   font-size: 16px;
 }
 
-/* ===== NOSOTROS ===== */
 .nosotros {
   max-width: none;
   background: linear-gradient(180deg, var(--beige) 0%, var(--rosa-claro) 100%);
@@ -566,12 +509,7 @@ header.scrolled {
 }
 .valor p { font-size: 14px; color: var(--texto-suave); line-height: 1.6; }
 
-/* ===== CONTACTO ===== */
-.contacto {
-  max-width: 1200px;
-  margin: auto;
-  padding: 90px 25px;
-}
+.contacto { max-width: 1200px; margin: auto; padding: 90px 25px; }
 .contact-card {
   max-width: 720px;
   margin: auto;
@@ -597,7 +535,6 @@ header.scrolled {
 }
 .contact-card a:hover { color: var(--dorado); }
 
-/* ===== FOOTER ===== */
 footer {
   background: linear-gradient(135deg, var(--rosa-profundo), #8a4f70);
   color: #fce8f2;
@@ -608,7 +545,6 @@ footer {
 }
 footer span { color: var(--dorado-claro); }
 
-/* ===== RESPONSIVE ===== */
 @media(max-width: 900px) {
   .inicio-grid { grid-template-columns: 1fr; gap: 40px; }
   .about-valores { grid-template-columns: 1fr; }
@@ -825,4 +761,25 @@ async function loadProducts() {
   const container = document.getElementById('products-container');
   if (!container) return;
 
-  try
+  try {
+    const response = await fetch(SCRIPT_URL);
+    allProducts = await response.json();
+
+    if (allProducts.error) {
+      console.error(allProducts.error);
+      container.innerHTML = '<p class="empty-msg">Error cargando productos.</p>';
+      return;
+    }
+
+    renderProducts();
+    setupFilters();
+  } catch (error) {
+    console.error('Error:', error);
+    container.innerHTML = '<p class="empty-msg">Error de conexión.</p>';
+  }
+}
+
+function renderProducts() {
+  const container = document.getElementById('products-container');
+
+  let filtered = allProducts;
