@@ -25,7 +25,7 @@ header{position:sticky;top:0;z-index:100}
 .menu-bar a:hover{color:var(--dorado-claro)}.menu-bar a:hover::after{width:100%;left:0}
 .menu-bar .sep{color:rgba(255,255,255,.5);font-weight:300;font-size:15px}
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:flex-start;position:relative;overflow:hidden;background:#eee}
-.hero-photo{position:absolute;inset:0;background-image:url("https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/img/logos/nueva_portada.png");background-size:cover;background-position:center 30%}
+.hero-photo{position:absolute;inset:-15% 0;background-image:url("https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/img/logos/nueva_portada.png");background-size:cover;background-position:center 30%;will-change:transform;transition:transform .1s linear}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(120deg,rgba(176,106,143,.55),rgba(217,140,179,.30) 45%,rgba(201,162,39,.12))}
 .hero-content{position:relative;z-index:2;max-width:620px;margin-left:clamp(25px,8vw,110px);padding:48px 42px;background:rgba(255,250,253,.9);border:1px solid rgba(255,255,255,.9);border-radius:30px;box-shadow:0 20px 60px rgba(103,54,88,.22);animation:fadeUp 1s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
@@ -316,6 +316,40 @@ function setupFilters() {
 }
 
 document.addEventListener('DOMContentLoaded', loadProducts);
+
+/* ===== EFECTO PARALLAX EN LA PORTADA ===== */
+(function() {
+  const hero = document.querySelector('.hero');
+  const heroPhoto = document.querySelector('.hero-photo');
+  if (!hero || !heroPhoto) return;
+
+  // Factor de velocidad: 0.3 = lento, 0.5 = medio, 0.8 = rápido
+  const velocidad = 0.4;
+  let ticking = false;
+
+  function parallax() {
+    const rect = hero.getBoundingClientRect();
+
+    // Solo mueve si la portada está visible en pantalla
+    if (rect.bottom > 0 && rect.top < window.innerHeight) {
+      // Cuando bajas, rect.top es negativo → desplazamiento positivo → la imagen baja
+      const desplazamiento = -rect.top * velocidad;
+      heroPhoto.style.transform = 'translateY(' + desplazamiento + 'px)';
+    }
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(parallax);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Ejecuta una vez al cargar
+  parallax();
+})();
 </script>
 </body>
 </html>
