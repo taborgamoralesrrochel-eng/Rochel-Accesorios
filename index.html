@@ -176,7 +176,8 @@ header.scrolled {
   inset: -10% 0;
   background-image: url("https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/img/logos/nueva_portada.jpg");
   background-size: cover;
-  background-position: center 25%;
+  background-position: center 30%;
+  background-repeat: no-repeat;
   will-change: transform;
   transform: translate3d(0,0,0) scale(1.08);
 }
@@ -824,14 +825,4 @@ async function loadProducts() {
   const container = document.getElementById('products-container');
   if (!container) return;
 
-  try {
-    const response = await fetch(SCRIPT_URL);
-    allProducts = await response.json();
-
-    if (allProducts.error) {
-      console.error(allProducts.error);
-      container.innerHTML = '<p class="empty-msg">Error cargando productos.</p>';
-      return;
-    }
-
-   
+  try
