@@ -3,573 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Rochél Accesorios - Joyitas de acero inoxidable y manillas tejidas.">
 <title>Rochél Accesorios</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💎</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --rosa-claro: #fdf1f7;
-  --rosa-suave: #f9dce9;
-  --rosa-medio: #f0b8d1;
-  --rosa-fuerte: #d98cb3;
-  --rosa-profundo: #b06a8f;
-  --beige: #f7efe6;
-  --beige-oscuro: #e8d8c3;
-  --dorado: #c9a227;
-  --dorado-claro: #e6c86e;
-  --dorado-suave: #f3e3b3;
-  --texto: #3d2c35;
-  --texto-suave: #7a6670;
-  --blanco: #ffffff;
-  --sombra: rgba(176, 106, 143, 0.15);
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Quicksand', sans-serif;
-  color: var(--texto);
-  background: var(--rosa-claro);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-h1, h2, h3, .serif {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  transition: box-shadow 0.3s;
-}
-header.scrolled { box-shadow: 0 3px 14px rgba(176, 106, 143, 0.12); }
-
-.topbar {
-  background-color: #ffffff;
-  background-image: repeating-linear-gradient(90deg, #fce4ef 0px, #fce4ef 6px, #ffffff 6px, #ffffff 16px);
-  border-bottom: 1px solid var(--dorado-suave);
-}
-.topbar-inner {
-  max-width: 1300px;
-  margin: auto;
-  height: 2.5cm;
-  padding: 0 25px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 20px;
-}
-.icon-btn {
-  background: rgba(255, 255, 255, 0.85);
-  border: none;
-  color: var(--texto);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-.icon-btn:hover {
-  background: #ffffff;
-  color: var(--rosa-profundo);
-  box-shadow: 0 4px 12px rgba(176, 106, 143, 0.2);
-}
-.topbar-actions { display: flex; justify-content: flex-end; gap: 6px; }
-.topbar-inner > .icon-btn:first-child { justify-self: start; }
-
-.logo-center { justify-self: center; display: flex; align-items: center; justify-content: center; text-decoration: none; }
-.logo-img { display: block; height: 2cm; width: auto; max-width: 320px; object-fit: contain; pointer-events: none; user-select: none; }
-
-.menu-bar {
-  background: linear-gradient(90deg, var(--rosa-fuerte) 0%, var(--rosa-profundo) 50%, var(--rosa-fuerte) 100%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  padding: 11px 20px;
-  flex-wrap: wrap;
-}
-.menu-bar a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  position: relative;
-  padding: 3px 2px;
-  transition: color 0.3s;
-}
-.menu-bar a::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -2px;
-  width: 0;
-  height: 2px;
-  background: var(--dorado-claro);
-  transition: width 0.3s, left 0.3s;
-}
-.menu-bar a:hover { color: var(--dorado-claro); }
-.menu-bar a:hover::after { width: 100%; left: 0; }
-.menu-bar .sep { color: rgba(255, 255, 255, 0.5); font-weight: 300; font-size: 15px; }
-
-/* ===== PORTADA CON PARALLAX ===== */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  position: relative;
-  overflow: hidden;
-  background: #eee;
-  color: #fff;
-}
-.hero-photo {
-  position: absolute;
-  top: -10%;
-  left: 0;
-  width: 100%;
-  height: 120%;
-  background-image: url("https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/img/logos/nueva_portada.png");
-  background-size: cover;
-  background-position: center 30%;
-  background-repeat: no-repeat;
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
-}
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, rgba(176, 106, 143, 0.55) 0%, rgba(217, 140, 179, 0.30) 45%, rgba(201, 162, 39, 0.12) 100%);
-}
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 620px;
-  margin-left: clamp(25px, 8vw, 110px);
-  padding: 48px 42px;
-  text-align: left;
-  background: rgba(255, 250, 253, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: 30px;
-  box-shadow: 0 20px 60px rgba(103, 54, 88, 0.22);
-  color: var(--texto);
-  animation: fadeUp 1s ease both;
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.eyebrow {
-  display: inline-block;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 12px;
-  letter-spacing: 5px;
-  font-weight: 700;
-  color: var(--dorado);
-  margin-bottom: 18px;
-  text-transform: uppercase;
-}
-.hero h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(48px, 7vw, 82px);
-  line-height: 0.98;
-  letter-spacing: -1px;
-  margin-bottom: 20px;
-  color: var(--rosa-profundo);
-  font-weight: 700;
-}
-.hero h1 em { font-style: italic; color: var(--dorado); }
-.hero p {
-  font-size: 18px;
-  line-height: 1.7;
-  max-width: 500px;
-  margin-bottom: 32px;
-  color: var(--texto-suave);
-  font-weight: 500;
-}
-
-.buttons { display: flex; justify-content: flex-start; gap: 14px; flex-wrap: wrap; }
-.btn {
-  display: inline-block;
-  padding: 14px 28px;
-  border-radius: 40px;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
-.btn:hover { transform: translateY(-3px); }
-.primary {
-  background: linear-gradient(135deg, var(--rosa-fuerte), var(--rosa-profundo));
-  color: white;
-  box-shadow: 0 8px 22px rgba(176, 106, 143, 0.3);
-}
-.primary:hover { box-shadow: 0 12px 28px rgba(176, 106, 143, 0.4); }
-.secondary {
-  background: rgba(255, 255, 255, 0.95);
-  color: var(--rosa-profundo);
-  border: 1.5px solid var(--dorado-claro);
-}
-.secondary:hover { background: var(--dorado-suave); border-color: var(--dorado); }
-
-.inicio {
-  max-width: 1200px;
-  margin: auto;
-  padding: 100px 25px;
-  position: relative;
-}
-.inicio::before {
-  content: '';
-  position: absolute;
-  top: 40px;
-  right: -100px;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(240, 184, 209, 0.4) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-.inicio::after {
-  content: '';
-  position: absolute;
-  bottom: 40px;
-  left: -120px;
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(230, 200, 110, 0.25) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-.inicio-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-}
-.inicio-texto .eyebrow { color: var(--dorado); margin-bottom: 14px; }
-.inicio-texto h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(36px, 5vw, 52px);
-  color: var(--rosa-profundo);
-  line-height: 1.1;
-  margin-bottom: 22px;
-  font-weight: 700;
-}
-.inicio-texto h2 em { color: var(--dorado); font-style: italic; }
-.inicio-texto p { font-size: 16px; color: var(--texto-suave); line-height: 1.8; margin-bottom: 18px; }
-.inicio-puntos { list-style: none; margin-top: 28px; }
-.inicio-puntos li {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 16px;
-  font-weight: 600;
-  color: var(--texto);
-  font-size: 15px;
-}
-.inicio-puntos li::before {
-  content: '✦';
-  color: var(--dorado);
-  font-size: 16px;
-  flex-shrink: 0;
-  width: 26px;
-  height: 26px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--dorado-suave);
-  border-radius: 50%;
-}
-.inicio-imagen {
-  position: relative;
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 25px 60px var(--sombra);
-  border: 4px solid var(--blanco);
-}
-.inicio-imagen img {
-  width: 100%;
-  height: 480px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s ease;
-}
-.inicio-imagen:hover img { transform: scale(1.05); }
-.inicio-imagen::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(160deg, transparent 55%, rgba(201, 162, 39, 0.18));
-  pointer-events: none;
-}
-.inicio-badge {
-  position: absolute;
-  bottom: 25px;
-  right: 25px;
-  background: rgba(255, 250, 253, 0.95);
-  padding: 14px 22px;
-  border-radius: 20px;
-  border: 1px solid var(--dorado-claro);
-  box-shadow: 0 10px 25px rgba(176, 106, 143, 0.2);
-  z-index: 2;
-  text-align: center;
-}
-.inicio-badge span {
-  display: block;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--rosa-profundo);
-  line-height: 1;
-}
-.inicio-badge small {
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--dorado);
-  font-weight: 700;
-}
-
-.catalogo { max-width: 1200px; margin: auto; padding: 90px 25px; }
-.title { text-align: center; margin-bottom: 45px; }
-.title h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 42px;
-  margin-bottom: 10px;
-  color: var(--rosa-profundo);
-  font-weight: 700;
-}
-.title h2 span { color: var(--dorado); font-style: italic; }
-.title p { color: var(--texto-suave); font-size: 16px; font-weight: 500; }
-.divider {
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--rosa-fuerte), var(--dorado));
-  margin: 14px auto 0;
-  border-radius: 3px;
-}
-
-.filters-bar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 40px;
-  padding: 18px 24px;
-  background: linear-gradient(135deg, var(--blanco), var(--rosa-claro));
-  border: 1px solid var(--dorado-suave);
-  border-radius: 20px;
-  box-shadow: 0 6px 20px rgba(176, 106, 143, 0.08);
-}
-.filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
-.filter-btn {
-  background: var(--blanco);
-  color: var(--rosa-profundo);
-  border: 1.5px solid var(--rosa-medio);
-  padding: 9px 22px;
-  border-radius: 30px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.25s;
-  font-family: 'Quicksand', sans-serif;
-}
-.filter-btn:hover { background: var(--rosa-suave); border-color: var(--rosa-fuerte); }
-.filter-btn.active {
-  background: linear-gradient(135deg, var(--rosa-fuerte), var(--rosa-profundo));
-  color: white;
-  border-color: transparent;
-  box-shadow: 0 6px 16px rgba(176, 106, 143, 0.3);
-}
-#sort-select {
-  background: var(--blanco);
-  color: var(--rosa-profundo);
-  border: 1.5px solid var(--rosa-medio);
-  padding: 10px 18px;
-  border-radius: 30px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  outline: none;
-  font-family: 'Quicksand', sans-serif;
-}
-
-.products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
-.product {
-  border: 1px solid var(--dorado-suave);
-  border-radius: 20px;
-  overflow: hidden;
-  background: linear-gradient(180deg, var(--blanco), var(--rosa-claro));
-  box-shadow: 0 10px 30px rgba(120, 70, 110, 0.08);
-  position: relative;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-.product:hover { transform: translateY(-6px); box-shadow: 0 18px 45px rgba(176, 106, 143, 0.2); }
-.product img {
-  width: 100%;
-  height: 310px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease;
-}
-.product:hover img { transform: scale(1.05); }
-.product .info { padding: 20px; position: relative; }
-.info h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 24px;
-  margin-bottom: 6px;
-  color: var(--rosa-profundo);
-  font-weight: 700;
-}
-.info p { font-size: 14px; color: var(--texto-suave); margin-bottom: 10px; line-height: 1.6; }
-.detalles { font-size: 12px; color: var(--dorado); margin: 4px 0; font-weight: 600; letter-spacing: 0.3px; }
-.precios { display: flex; gap: 8px; align-items: center; margin: 10px 0; }
-.precio-actual {
-  font-weight: 700;
-  color: var(--rosa-profundo);
-  font-size: 20px;
-  font-family: 'Cormorant Garamond', serif;
-}
-.btn-consultar {
-  display: inline-block;
-  background: linear-gradient(135deg, #25D366, #1da851);
-  color: white;
-  padding: 9px 18px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 700;
-  margin-top: 8px;
-  transition: all 0.3s;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
-}
-.btn-consultar:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(37, 211, 102, 0.35); }
-.empty-msg {
-  grid-column: 1 / -1;
-  text-align: center;
-  color: var(--texto-suave);
-  padding: 50px 20px;
-  font-style: italic;
-  font-size: 16px;
-}
-
-.nosotros {
-  max-width: none;
-  background: linear-gradient(180deg, var(--beige) 0%, var(--rosa-claro) 100%);
-}
-.nosotros > .inner {
-  max-width: 1200px;
-  margin: auto;
-  padding: 90px 25px;
-}
-.about-inner { max-width: 850px; margin: auto; text-align: center; }
-.about-inner p {
-  font-size: 18px;
-  color: var(--texto-suave);
-  line-height: 1.9;
-  margin-bottom: 20px;
-}
-.about-valores {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  margin-top: 50px;
-}
-.valor {
-  padding: 30px 20px;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 18px;
-  border: 1px solid var(--dorado-suave);
-  transition: transform 0.3s;
-}
-.valor:hover { transform: translateY(-4px); }
-.valor .icono { font-size: 32px; margin-bottom: 12px; }
-.valor h4 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  color: var(--rosa-profundo);
-  margin-bottom: 8px;
-}
-.valor p { font-size: 14px; color: var(--texto-suave); line-height: 1.6; }
-
-.contacto { max-width: 1200px; margin: auto; padding: 90px 25px; }
-.contact-card {
-  max-width: 720px;
-  margin: auto;
-  text-align: center;
-  padding: 45px 35px;
-  border: 1px solid var(--dorado-suave);
-  border-radius: 28px;
-  background: linear-gradient(145deg, var(--blanco), var(--rosa-claro));
-  box-shadow: 0 15px 40px rgba(120, 70, 110, 0.1);
-}
-.contact-card h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 32px;
-  margin-bottom: 22px;
-  color: var(--rosa-profundo);
-}
-.contact-card p { color: var(--texto-suave); margin: 12px 0; font-size: 16px; }
-.contact-card a {
-  color: var(--rosa-profundo);
-  font-weight: 700;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-.contact-card a:hover { color: var(--dorado); }
-
-footer {
-  background: linear-gradient(135deg, var(--rosa-profundo), #8a4f70);
-  color: #fce8f2;
-  text-align: center;
-  padding: 30px;
-  font-size: 13px;
-  letter-spacing: 0.5px;
-}
-footer span { color: var(--dorado-claro); }
-
-@media(max-width: 900px) {
-  .inicio-grid { grid-template-columns: 1fr; gap: 40px; }
-  .about-valores { grid-template-columns: 1fr; }
-  .products { grid-template-columns: repeat(2, 1fr); }
-  .inicio-imagen img { height: 380px; }
-}
-@media (max-width: 800px) {
-  .topbar-inner {
-    height: 1.8cm;
-    padding: 0 12px;
-    gap: 8px;
-  }
-  .logo-img { height: 1.4cm; max-width: 220px; }
-  .icon-btn { width: 32px; height: 32px; }
-  .icon-btn svg { width: 15px; height: 15px; }
-  .menu-bar { gap: 10px; padding: 10px 10px; }
-  .menu-bar a { font-size: 10px; letter-spacing: 1.5px; }
-  .menu-bar .sep { font-size: 12px; }
-  .hero { min-height: 90vh; }
-  .hero-content { margin: 25px auto; padding: 36px 28px; }
-  .catalogo, .nosotros > .inner, .contacto { padding: 70px 20px; }
-  .products { grid-template-columns: 1fr; }
-  .filters-bar { flex-direction: column; align-items: stretch; }
-  .filter-group { justify-content: center; }
-}
+:root{--rosa-claro:#fdf1f7;--rosa-suave:#f9dce9;--rosa-medio:#f0b8d1;--rosa-fuerte:#d98cb3;--rosa-profundo:#b06a8f;--beige:#f7efe6;--dorado:#c9a227;--dorado-claro:#e6c86e;--dorado-suave:#f3e3b3;--texto:#3d2c35;--texto-suave:#7a6670;--blanco:#fff;--sombra:rgba(176,106,143,.15)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:'Quicksand',sans-serif;color:var(--texto);background:var(--rosa-claro);line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;letter-spacing:.5px}
+header{position:sticky;top:0;z-index:100}
+.topbar{background:#fff;background-image:repeating-linear-gradient(90deg,#fce4ef 0,#fce4ef 6px,#fff 6px,#fff 16px);border-bottom:1px solid var(--dorado-suave)}
+.topbar-inner{max-width:1300px;margin:auto;height:2.5cm;padding:0 25px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
+.icon-btn{background:rgba(255,255,255,.85);border:none;color:var(--texto);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;transition:all .3s;text-decoration:none}
+.icon-btn:hover{background:#fff;color:var(--rosa-profundo);box-shadow:0 4px 12px rgba(176,106,143,.2)}
+.topbar-actions{display:flex;justify-content:flex-end;gap:6px}
+.logo-center{justify-self:center;display:flex;align-items:center;justify-content:center;text-decoration:none}
+.logo-img{display:block;height:2cm;width:auto;max-width:320px;object-fit:contain}
+.menu-bar{background:linear-gradient(90deg,var(--rosa-fuerte) 0,var(--rosa-profundo) 50%,var(--rosa-fuerte) 100%);display:flex;justify-content:center;align-items:center;gap:18px;padding:11px 20px;flex-wrap:wrap}
+.menu-bar a{color:#fff;text-decoration:none;font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;position:relative;padding:3px 2px;transition:color .3s}
+.menu-bar a::after{content:'';position:absolute;left:50%;bottom:-2px;width:0;height:2px;background:var(--dorado-claro);transition:width .3s,left .3s}
+.menu-bar a:hover{color:var(--dorado-claro)}.menu-bar a:hover::after{width:100%;left:0}
+.menu-bar .sep{color:rgba(255,255,255,.5);font-weight:300;font-size:15px}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:flex-start;position:relative;overflow:hidden;background:#eee}
+.hero-photo{position:absolute;inset:0;background-image:url("https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/img/logos/nueva_portada.png");background-size:cover;background-position:center 30%}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(120deg,rgba(176,106,143,.55),rgba(217,140,179,.30) 45%,rgba(201,162,39,.12))}
+.hero-content{position:relative;z-index:2;max-width:620px;margin-left:clamp(25px,8vw,110px);padding:48px 42px;background:rgba(255,250,253,.9);border:1px solid rgba(255,255,255,.9);border-radius:30px;box-shadow:0 20px 60px rgba(103,54,88,.22);animation:fadeUp 1s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{display:inline-block;font-size:12px;letter-spacing:5px;font-weight:700;color:var(--dorado);margin-bottom:18px;text-transform:uppercase}
+.hero h1{font-size:clamp(48px,7vw,82px);line-height:.98;letter-spacing:-1px;margin-bottom:20px;color:var(--rosa-profundo);font-weight:700}
+.hero h1 em{font-style:italic;color:var(--dorado)}
+.hero p{font-size:18px;line-height:1.7;max-width:500px;margin-bottom:32px;color:var(--texto-suave);font-weight:500}
+.buttons{display:flex;justify-content:flex-start;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 28px;border-radius:40px;text-decoration:none;font-weight:700;font-size:13px;transition:all .3s;border:none;cursor:pointer}
+.btn:hover{transform:translateY(-3px)}
+.primary{background:linear-gradient(135deg,var(--rosa-fuerte),var(--rosa-profundo));color:#fff;box-shadow:0 8px 22px rgba(176,106,143,.3)}
+.secondary{background:rgba(255,255,255,.95);color:var(--rosa-profundo);border:1.5px solid var(--dorado-claro)}
+.secondary:hover{background:var(--dorado-suave);border-color:var(--dorado)}
+.inicio{max-width:1200px;margin:auto;padding:100px 25px}
+.inicio-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.inicio-texto .eyebrow{color:var(--dorado);margin-bottom:14px}
+.inicio-texto h2{font-size:clamp(36px,5vw,52px);color:var(--rosa-profundo);line-height:1.1;margin-bottom:22px;font-weight:700}
+.inicio-texto h2 em{color:var(--dorado);font-style:italic}
+.inicio-texto p{font-size:16px;color:var(--texto-suave);line-height:1.8;margin-bottom:18px}
+.inicio-puntos{list-style:none;margin-top:28px}
+.inicio-puntos li{display:flex;align-items:center;gap:14px;margin-bottom:16px;font-weight:600;font-size:15px}
+.inicio-puntos li::before{content:'✦';color:var(--dorado);flex-shrink:0;width:26px;height:26px;display:flex;align-items:center;justify-content:center;background:var(--dorado-suave);border-radius:50%}
+.inicio-imagen{position:relative;border-radius:28px;overflow:hidden;box-shadow:0 25px 60px var(--sombra);border:4px solid var(--blanco)}
+.inicio-imagen img{width:100%;height:480px;object-fit:cover;display:block;transition:transform .6s}
+.inicio-imagen:hover img{transform:scale(1.05)}
+.inicio-badge{position:absolute;bottom:25px;right:25px;background:rgba(255,250,253,.95);padding:14px 22px;border-radius:20px;border:1px solid var(--dorado-claro);text-align:center}
+.inicio-badge span{display:block;font-size:26px;font-weight:700;color:var(--rosa-profundo);line-height:1}
+.inicio-badge small{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);font-weight:700}
+.catalogo{max-width:1200px;margin:auto;padding:90px 25px}
+.title{text-align:center;margin-bottom:45px}
+.title h2{font-size:42px;margin-bottom:10px;color:var(--rosa-profundo);font-weight:700}
+.title h2 span{color:var(--dorado);font-style:italic}
+.title p{color:var(--texto-suave);font-size:16px;font-weight:500}
+.divider{width:80px;height:3px;background:linear-gradient(90deg,var(--rosa-fuerte),var(--dorado));margin:14px auto 0;border-radius:3px}
+.filters-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:15px;margin-bottom:40px;padding:18px 24px;background:linear-gradient(135deg,var(--blanco),var(--rosa-claro));border:1px solid var(--dorado-suave);border-radius:20px;box-shadow:0 6px 20px rgba(176,106,143,.08)}
+.filter-group{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{background:var(--blanco);color:var(--rosa-profundo);border:1.5px solid var(--rosa-medio);padding:9px 22px;border-radius:30px;font-size:13px;font-weight:700;cursor:pointer;transition:all .25s;font-family:'Quicksand',sans-serif}
+.filter-btn:hover{background:var(--rosa-suave);border-color:var(--rosa-fuerte)}
+.filter-btn.active{background:linear-gradient(135deg,var(--rosa-fuerte),var(--rosa-profundo));color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(176,106,143,.3)}
+#sort-select{background:var(--blanco);color:var(--rosa-profundo);border:1.5px solid var(--rosa-medio);padding:10px 18px;border-radius:30px;font-size:13px;font-weight:700;cursor:pointer;outline:none;font-family:'Quicksand',sans-serif}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.product{border:1px solid var(--dorado-suave);border-radius:20px;overflow:hidden;background:linear-gradient(180deg,var(--blanco),var(--rosa-claro));box-shadow:0 10px 30px rgba(120,70,110,.08);transition:transform .35s,box-shadow .35s;display:flex;flex-direction:column}
+.product:hover{transform:translateY(-6px);box-shadow:0 18px 45px rgba(176,106,143,.2)}
+.product-img-wrap{width:100%;height:310px;overflow:hidden;background:var(--rosa-suave)}
+.product img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.product:hover img{transform:scale(1.05)}
+.product .info{padding:20px;display:flex;flex-direction:column;flex-grow:1}
+.info h3{font-size:24px;margin-bottom:6px;color:var(--rosa-profundo);font-weight:700}
+.info .descripcion{font-size:14px;color:var(--texto-suave);margin-bottom:10px;line-height:1.6;flex-grow:1}
+.info .meta{font-size:12px;color:var(--dorado);margin:3px 0;font-weight:600;letter-spacing:.3px}
+.info .meta strong{color:var(--rosa-profundo)}
+.precios{display:flex;gap:8px;align-items:center;margin:12px 0 6px}
+.precio-actual{font-weight:700;color:var(--rosa-profundo);font-size:24px;font-family:'Cormorant Garamond',serif}
+.precio-actual::before{content:'Bs ';font-size:15px;color:var(--dorado)}
+.btn-consultar{display:inline-block;background:linear-gradient(135deg,#25D366,#1da851);color:#fff;padding:10px 20px;border-radius:25px;text-decoration:none;font-size:13px;font-weight:700;text-align:center;transition:all .3s;box-shadow:0 4px 12px rgba(37,211,102,.25)}
+.btn-consultar:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(37,211,102,.35)}
+.empty-msg,.loading-msg{grid-column:1/-1;text-align:center;padding:50px 20px;font-size:16px}
+.empty-msg{color:var(--texto-suave);font-style:italic}
+.loading-msg{color:var(--rosa-profundo);font-weight:600}
+.nosotros{background:linear-gradient(180deg,var(--beige) 0,var(--rosa-claro) 100%)}
+.nosotros>.inner{max-width:1200px;margin:auto;padding:90px 25px}
+.about-inner{max-width:850px;margin:auto;text-align:center}
+.about-inner p{font-size:18px;color:var(--texto-suave);line-height:1.9;margin-bottom:20px}
+.about-valores{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:50px}
+.valor{padding:30px 20px;background:rgba(255,255,255,.7);border-radius:18px;border:1px solid var(--dorado-suave)}
+.valor .icono{font-size:32px;margin-bottom:12px}
+.valor h4{font-size:22px;color:var(--rosa-profundo);margin-bottom:8px}
+.valor p{font-size:14px;color:var(--texto-suave)}
+.contacto{max-width:1200px;margin:auto;padding:90px 25px}
+.contact-card{max-width:720px;margin:auto;text-align:center;padding:45px 35px;border:1px solid var(--dorado-suave);border-radius:28px;background:linear-gradient(145deg,var(--blanco),var(--rosa-claro));box-shadow:0 15px 40px rgba(120,70,110,.1)}
+.contact-card h3{font-size:32px;margin-bottom:22px;color:var(--rosa-profundo)}
+.contact-card p{color:var(--texto-suave);margin:12px 0;font-size:16px}
+.contact-card a{color:var(--rosa-profundo);font-weight:700;text-decoration:none}
+footer{background:linear-gradient(135deg,var(--rosa-profundo),#8a4f70);color:#fce8f2;text-align:center;padding:30px;font-size:13px}
+footer span{color:var(--dorado-claro)}
+@media(max-width:900px){.inicio-grid{grid-template-columns:1fr;gap:40px}.about-valores{grid-template-columns:1fr}.products{grid-template-columns:repeat(2,1fr)}.inicio-imagen img{height:380px}}
+@media(max-width:800px){.topbar-inner{height:1.8cm;padding:0 12px;gap:8px}.logo-img{height:1.4cm;max-width:220px}.icon-btn{width:32px;height:32px}.menu-bar{gap:10px;padding:10px}.menu-bar a{font-size:10px;letter-spacing:1.5px}.hero-content{margin:25px auto;padding:36px 28px}.catalogo,.nosotros>.inner,.contacto{padding:70px 20px}.products{grid-template-columns:1fr}.filters-bar{flex-direction:column;align-items:stretch}.filter-group{justify-content:center}}
 </style>
 </head>
 <body>
@@ -578,71 +111,47 @@ footer span { color: var(--dorado-claro); }
   <div class="topbar">
     <div class="topbar-inner">
       <button class="icon-btn" aria-label="Buscar">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
       </button>
-
-      <a href="#inicio" class="logo-center" aria-label="Rochél Accesorios">
-        <img class="logo-img"
-             src="https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/img/logos/logo_transparente.png"
-             alt="Rochél Accesorios">
-      </a>
-
+      <a href="#inicio" class="logo-center"><img class="logo-img" src="https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/img/logos/logo_transparente.png" alt="Rochél Accesorios"></a>
       <div class="topbar-actions">
         <a class="icon-btn" href="https://www.instagram.com/rochelaccesorios.2026/" target="_blank" aria-label="Instagram">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
         </a>
         <a class="icon-btn" href="https://wa.me/59163501104" target="_blank" aria-label="WhatsApp">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
         </a>
       </div>
     </div>
   </div>
-
   <nav class="menu-bar">
-    <a href="#inicio">INICIO</a>
-    <span class="sep">|</span>
-    <a href="#catalogo">CATÁLOGO</a>
-    <span class="sep">|</span>
-    <a href="#nosotros">NOSOTROS</a>
-    <span class="sep">|</span>
+    <a href="#inicio">INICIO</a><span class="sep">|</span>
+    <a href="#catalogo">CATÁLOGO</a><span class="sep">|</span>
+    <a href="#nosotros">NOSOTROS</a><span class="sep">|</span>
     <a href="#contacto">CONTACTO</a>
   </nav>
 </header>
 
 <main>
-
-<!-- ===== PORTADA ===== -->
 <section class="hero" id="inicio">
-  <div class="hero-photo" aria-hidden="true"></div>
-  <div class="hero-overlay"></div>
+  <div class="hero-photo"></div><div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="eyebrow">Rochél Accesorios</span>
     <h1>Brilla a tu <em>manera</em></h1>
     <p>Joyitas de acero inoxidable y detalles tejidos pensados para acompañarte en cada momento.</p>
     <div class="buttons">
       <a class="btn primary" href="#catalogo">DESCUBRIR COLECCIÓN</a>
-      <a class="btn secondary" href="https://wa.me/59163501104?text=Hola%20Roch%C3%A9l%20Accesorios%2C%20quiero%20consultar%20por%20un%20producto." target="_blank">PEDIR POR WHATSAPP</a>
+      <a class="btn secondary" href="https://wa.me/59163501104" target="_blank">PEDIR POR WHATSAPP</a>
     </div>
   </div>
 </section>
 
-<!-- ===== INICIO (INFO TIENDA) ===== -->
 <section class="inicio" id="info">
   <div class="inicio-grid">
     <div class="inicio-texto">
       <span class="eyebrow">Bienvenida</span>
       <h2>Conoce <em>Rochél</em></h2>
-      <p>Somos un emprendimiento boliviano apasionado por los detalles. Creamos accesorios únicos con acero inoxidable de alta calidad y manillas tejidas a mano, pensados para que te sientas especial todos los días.</p>
+      <p>Somos un emprendimiento boliviano apasionado por los detalles. Creamos accesorios únicos con acero inoxidable de alta calidad y manillas tejidas a mano.</p>
       <p>Cada pieza está diseñada con amor en Santa Cruz, combinando delicadeza, durabilidad y ese toque dorado que te hace brillar.</p>
       <ul class="inicio-puntos">
         <li>Acero inoxidable hipoalergénico</li>
@@ -650,21 +159,15 @@ footer span { color: var(--dorado-claro); }
         <li>Diseños exclusivos y personalizados</li>
         <li>Envíos a todo el país</li>
       </ul>
-      <div class="buttons" style="margin-top: 32px;">
-        <a class="btn primary" href="#catalogo">VER PRODUCTOS</a>
-      </div>
+      <div class="buttons" style="margin-top:32px;"><a class="btn primary" href="#catalogo">VER PRODUCTOS</a></div>
     </div>
     <div class="inicio-imagen">
       <img src="https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/img/logos/portada_rochel.jpeg" alt="Rochél Accesorios">
-      <div class="inicio-badge">
-        <span>+100</span>
-        <small>Diseños</small>
-      </div>
+      <div class="inicio-badge"><span>+100</span><small>Diseños</small></div>
     </div>
   </div>
 </section>
 
-<!-- ===== CATÁLOGO ===== -->
 <section id="catalogo" class="catalogo">
   <div class="title">
     <h2>Nuestro <span>Catálogo</span></h2>
@@ -690,61 +193,39 @@ footer span { color: var(--dorado-claro); }
     </div>
   </div>
 
-  <div class="products" id="products-container"></div>
+  <div class="products" id="products-container">
+    <p class="loading-msg">Cargando catálogo...</p>
+  </div>
 </section>
 
-<!-- ===== NOSOTROS ===== -->
 <section id="nosotros" class="nosotros">
   <div class="inner">
     <div class="about-inner">
-      <div class="title">
-        <h2>Sobre <span>Rochél</span></h2>
-        <p>Hecho con amor en Santa Cruz, Bolivia</p>
-        <div class="divider"></div>
-      </div>
-      <p>Rochél nació del deseo de crear accesorios que cuenten historias. Cada arete, cada manilla y cada collar está pensado para acompañarte en tu día a día, con la elegancia del acero inoxidable y la calidez de lo hecho a mano.</p>
-      <p>Creemos que los pequeños detalles hacen la diferencia, y que brillar no tiene que ser complicado: a veces, solo basta con la pieza correcta.</p>
-
+      <div class="title"><h2>Sobre <span>Rochél</span></h2><p>Hecho con amor en Santa Cruz, Bolivia</p><div class="divider"></div></div>
+      <p>Rochél nació del deseo de crear accesorios que cuenten historias. Cada arete, cada manilla y cada collar está pensado para acompañarte en tu día a día.</p>
+      <p>Creemos que los pequeños detalles hacen la diferencia, y que brillar no tiene que ser complicado.</p>
       <div class="about-valores">
-        <div class="valor">
-          <div class="icono">✨</div>
-          <h4>Calidad</h4>
-          <p>Acero inoxidable resistente y hipoalergénico que dura contigo.</p>
-        </div>
-        <div class="valor">
-          <div class="icono">🤍</div>
-          <h4>Hecho a mano</h4>
-          <p>Cada pieza tejida con dedicación y atención al detalle.</p>
-        </div>
-        <div class="valor">
-          <div class="icono">💛</div>
-          <h4>Amor</h4>
-          <p>Diseños pensados para que te sientas única y especial.</p>
-        </div>
+        <div class="valor"><div class="icono">✨</div><h4>Calidad</h4><p>Acero inoxidable resistente y hipoalergénico que dura contigo.</p></div>
+        <div class="valor"><div class="icono">🤍</div><h4>Hecho a mano</h4><p>Cada pieza tejida con dedicación y atención al detalle.</p></div>
+        <div class="valor"><div class="icono">💛</div><h4>Amor</h4><p>Diseños pensados para que te sientas única y especial.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== CONTACTO ===== -->
 <section id="contacto" class="contacto">
-  <div class="title">
-    <h2>¿Te gustó <span>algún diseño</span>?</h2>
-    <p>Escríbenos para consultar modelos y disponibilidad</p>
-    <div class="divider"></div>
-  </div>
+  <div class="title"><h2>¿Te gustó <span>algún diseño</span>?</h2><p>Escríbenos para consultar modelos y disponibilidad</p><div class="divider"></div></div>
   <div class="contact-card">
     <h3>Rochél Accesorios 💗</h3>
     <p>📱 WhatsApp: <a href="https://wa.me/59163501104" target="_blank">63501104</a></p>
     <p>📷 Instagram: <a href="https://www.instagram.com/rochelaccesorios.2026/" target="_blank">@rochelaccesorios.2026</a></p>
     <p>📍 Santa Cruz, Bolivia</p>
-    <div class="buttons" style="margin-top: 28px; justify-content: center;">
+    <div class="buttons" style="margin-top:28px;justify-content:center;">
       <a class="btn primary" href="https://wa.me/59163501104" target="_blank">ESCRÍBENOS</a>
       <a class="btn secondary" href="https://www.instagram.com/rochelaccesorios.2026/" target="_blank">VER INSTAGRAM</a>
     </div>
   </div>
 </section>
-
 </main>
 
 <footer>© 2026 <span>Rochél Accesorios</span> · Santa Cruz, Bolivia</footer>
@@ -752,7 +233,6 @@ footer span { color: var(--dorado-claro); }
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgT_57PiBVvprIm5Si69iTqkQ5Gew-UtDp3aF3K0iCPKSwgZnt0KGJJ3lIMEzMf2EV/exec';
 const WHATSAPP = '59163501104';
-
 let allProducts = [];
 let currentCategoria = 'todo';
 let currentSort = 'recientes';
@@ -760,26 +240,82 @@ let currentSort = 'recientes';
 async function loadProducts() {
   const container = document.getElementById('products-container');
   if (!container) return;
-
   try {
     const response = await fetch(SCRIPT_URL);
-    allProducts = await response.json();
-
-    if (allProducts.error) {
-      console.error(allProducts.error);
-      container.innerHTML = '<p class="empty-msg">Error cargando productos.</p>';
+    const data = await response.json();
+    if (data && data.error) {
+      container.innerHTML = '<p class="empty-msg">Error: ' + data.error + '</p>';
       return;
     }
-
+    allProducts = Array.isArray(data) ? data : [];
     renderProducts();
     setupFilters();
   } catch (error) {
-    console.error('Error:', error);
-    container.innerHTML = '<p class="empty-msg">Error de conexión.</p>';
+    console.error('Error cargando catálogo:', error);
+    container.innerHTML = '<p class="empty-msg">No se pudo cargar el catálogo. Revisa tu conexión.</p>';
   }
 }
 
 function renderProducts() {
   const container = document.getElementById('products-container');
+  let filtered = allProducts.slice();
+  if (currentCategoria !== 'todo') {
+    filtered = filtered.filter(p => (p.categoria || '').toLowerCase() === currentCategoria.toLowerCase());
+  }
+  if (currentSort === 'precio-asc') {
+    filtered.sort((a, b) => Number(a.precio || 0) - Number(b.precio || 0));
+  } else if (currentSort === 'precio-desc') {
+    filtered.sort((a, b) => Number(b.precio || 0) - Number(a.precio || 0));
+  } else if (currentSort === 'nombre') {
+    filtered.sort((a, b) => (a.nombre || '').localeCompare(b.nombre || ''));
+  }
+  if (filtered.length === 0) {
+    container.innerHTML = '<p class="empty-msg">No hay productos en esta categoría.</p>';
+    return;
+  }
+  container.innerHTML = filtered.map(p => {
+    const nombre = p.nombre || '';
+    const descripcion = p.descripcion || '';
+    const imagen = p.url_imagen || '';
+    const categoria = p.categoria || '';
+    const material = p.material || '';
+    const color = p.color || '';
+    const precio = p.precio || '';
+    const mensaje = encodeURIComponent('Hola Rochél Accesorios, quiero consultar por: ' + nombre + ' (Bs ' + precio + ')');
+    const waLink = 'https://wa.me/' + WHATSAPP + '?text=' + mensaje;
+    return '<div class="product">' +
+      '<div class="product-img-wrap">' + (imagen ? '<img src="' + imagen + '" alt="' + nombre + '" loading="lazy" onerror="this.style.display=\'none\'">' : '') + '</div>' +
+      '<div class="info">' +
+        '<h3>' + nombre + '</h3>' +
+        '<p class="descripcion">' + descripcion + '</p>' +
+        (material ? '<p class="meta"><strong>Material:</strong> ' + material + '</p>' : '') +
+        (color ? '<p class="meta"><strong>Color:</strong> ' + color + '</p>' : '') +
+        (categoria ? '<p class="meta"><strong>Categoría:</strong> ' + categoria + '</p>' : '') +
+        '<div class="precios"><span class="precio-actual">' + precio + '</span></div>' +
+        '<a class="btn-consultar" href="' + waLink + '" target="_blank">Consultar por WhatsApp</a>' +
+      '</div></div>';
+  }).join('');
+}
 
-  let filtered = allProducts;
+function setupFilters() {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCategoria = btn.dataset.categoria;
+      renderProducts();
+    });
+  });
+  const sortSelect = document.getElementById('sort-select');
+  if (sortSelect) {
+    sortSelect.addEventListener('change', e => {
+      currentSort = e.target.value;
+      renderProducts();
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadProducts);
+</script>
+</body>
+</html>
