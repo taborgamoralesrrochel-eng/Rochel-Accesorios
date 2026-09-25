@@ -777,9 +777,12 @@ footer span{color:var(--dorado-claro)}
 <header id="header">
   <div class="topbar">
     <div class="topbar-inner">
-      <button class="icon-btn" aria-label="Buscar">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      </button>
+<button class="icon-btn" id="btn-buscar" type="button" aria-label="Buscar productos">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="11" cy="11" r="8"></circle>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</button>
       <a href="#inicio" class="logo-center"><img class="logo-img" src="https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/img/logos/logo_transparente.png" alt="Rochél Accesorios"></a>
       <div class="topbar-actions">
         <a class="icon-btn" href="https://www.instagram.com/rochelaccesorios.2026/" target="_blank" aria-label="Instagram">
@@ -1470,8 +1473,6 @@ msg.innerHTML = '¡Registro enviado correctamente! 💗 Ahora puedes continuar p
 /* Guardar usuario registrado en este navegador */
 localStorage.setItem('rochelUsuarioEmail', email);
 localStorage.setItem('rochelUsuarioNombre', nombre);
-
-window.open(
 
       window.open(
         'https://wa.me/' + WHATSAPP + '?text=' + mensajeWhatsApp,
