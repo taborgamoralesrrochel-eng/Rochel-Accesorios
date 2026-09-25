@@ -768,13 +768,13 @@ footer span{color:var(--dorado-claro)}
       </div>
     </div>
   </div>
-  <nav class="menu-bar">
-    <a href="#inicio">INICIO</a><span class="sep">|</span>
-    <a href="#catalogo">CATÁLOGO</a><span class="sep">|</span>
-    <a href="#info">NOSOTROS</a><span class="sep">|</span>
-    <a href="#registro">REGÍSTRATE</a><span class="sep">|</span>
-    <a href="#contacto">CONTACTO</a>
-  </nav>
+<nav class="menu-bar">
+  <a href="#inicio">INICIO</a><span class="sep">|</span>
+  <a href="#info">NOSOTROS</a><span class="sep">|</span>
+  <a href="#catalogo">CATÁLOGO</a><span class="sep">|</span>
+  <a href="#registro">REGÍSTRATE</a><span class="sep">|</span>
+  <a href="#contacto">CONTACTO</a>
+</nav>
 </header>
 
 <main>
@@ -1233,13 +1233,15 @@ document.addEventListener('DOMContentLoaded', loadProducts);
     const interes = document.getElementById('interes').value || 'accesorios';
     const comentarios = document.getElementById('comentarios').value.trim();
 
-    const mensajeWhatsApp =
-      'Hola Rochél Accesorios 💗, acabo de registrarme en la página.%0A%0A' +
-      'Nombre: ' + encodeURIComponent(nombre) + '%0A' +
-      'Teléfono: ' + encodeURIComponent(codigoPais + ' ' + telefono) + '%0A' +
-      'Interés: ' + encodeURIComponent(interes) + '%0A' +
-      (comentarios ? 'Consulta: ' + encodeURIComponent(comentarios) + '%0A' : '') +
-      '%0AQuisiera conocer más sobre sus accesorios.';
+const mensajeWhatsApp =
+  '✨ Hola, Rochél Accesorios 💗%0A' +
+  '¡Acabo de registrarme en su página! 🌷%0A%0A' +
+  '👤 Nombre: ' + encodeURIComponent(nombre) + '%0A' +
+  '📱 Teléfono: ' + encodeURIComponent(codigoPais + ' ' + telefono) + '%0A' +
+  '💎 Interés: ' + encodeURIComponent(interes) + '%0A' +
+  (comentarios ? '💌 Consulta: ' + encodeURIComponent(comentarios) + '%0A' : '') +
+  '%0AMe encantaría conocer más sobre sus accesorios, precios y disponibilidad ✨%0A%0A' +
+  'Quedo atenta a su respuesta. ¡Muchas gracias! 💕🛍️';
 
     msg.className = 'registro-msg ok';
     msg.textContent = 'Enviando tu registro...';
