@@ -85,15 +85,6 @@ header{position:sticky;top:0;z-index:100}
 .empty-msg,.loading-msg{grid-column:1/-1;text-align:center;padding:50px 20px;font-size:16px}
 .empty-msg{color:var(--texto-suave);font-style:italic}
 .loading-msg{color:var(--rosa-profundo);font-weight:600}
-.nosotros{background:linear-gradient(180deg,var(--beige) 0,var(--rosa-claro) 100%)}
-.nosotros>.inner{max-width:1200px;margin:auto;padding:90px 25px}
-.about-inner{max-width:850px;margin:auto;text-align:center}
-.about-inner p{font-size:17px;color:#65545d;line-height:1.9;margin-bottom:20px}
-.about-valores{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:50px}
-.valor{padding:30px 20px;background:rgba(255,255,255,.7);border-radius:18px;border:1px solid var(--dorado-suave)}
-.valor .icono{font-size:32px;margin-bottom:12px}
-.valor h4{font-family:'Lora',serif;font-size:22px;color:var(--rosa-profundo);margin-bottom:8px}
-.valor p{font-size:15px;color:#65545d;line-height:1.7}
 
 .registro{
   position:relative;
@@ -285,8 +276,8 @@ header{position:sticky;top:0;z-index:100}
 }
 footer{background:linear-gradient(135deg,var(--rosa-profundo),#8a4f70);color:#fce8f2;text-align:center;padding:30px;font-size:13px}
 footer span{color:var(--dorado-claro)}
-@media(max-width:900px){.inicio-grid{grid-template-columns:1fr;gap:40px}.about-valores{grid-template-columns:1fr}.products{grid-template-columns:repeat(2,1fr)}.inicio-imagen img{height:380px}.registro-grid{grid-template-columns:1fr}.registro-presentacion{padding:34px 28px}}
-@media(max-width:800px){.topbar-inner{height:1.8cm;padding:0 12px;gap:8px}.logo-img{height:1.4cm;max-width:220px}.icon-btn{width:32px;height:32px}.menu-bar{gap:10px;padding:10px}.menu-bar a{font-size:10px;letter-spacing:1.5px}.hero-content{margin:25px auto;padding:36px 28px}.catalogo,.nosotros>.inner,.contacto,.registro>.registro-inner{padding:70px 20px}.products{grid-template-columns:1fr}.filters-bar{flex-direction:column;align-items:stretch}.filter-group{justify-content:center}.registro-card{padding:27px 20px}.registro-form{grid-template-columns:1fr}.campo.full,.terminos,.registro-actions{grid-column:1}.registro-presentacion h2{font-size:38px}}
+@media(max-width:900px){.inicio-grid{grid-template-columns:1fr;gap:40px}.products{grid-template-columns:repeat(2,1fr)}.inicio-imagen img{height:380px}.registro-grid{grid-template-columns:1fr}.registro-presentacion{padding:34px 28px}}
+@media(max-width:800px){.topbar-inner{height:1.8cm;padding:0 12px;gap:8px}.logo-img{height:1.4cm;max-width:220px}.icon-btn{width:32px;height:32px}.menu-bar{gap:10px;padding:10px}.menu-bar a{font-size:10px;letter-spacing:1.5px}.hero-content{margin:25px auto;padding:36px 28px}.catalogo,.registro>.registro-inner{padding:70px 20px}.products{grid-template-columns:1fr}.filters-bar{flex-direction:column;align-items:stretch}.filter-group{justify-content:center}.registro-card{padding:27px 20px}.registro-form{grid-template-columns:1fr}.campo.full,.terminos,.registro-actions{grid-column:1}.registro-presentacion h2{font-size:38px}}
 /* =========================================
    NUEVA SECCIÓN CONTACTO - ROCHÉL
 ========================================= */
@@ -780,7 +771,7 @@ footer span{color:var(--dorado-claro)}
   <nav class="menu-bar">
     <a href="#inicio">INICIO</a><span class="sep">|</span>
     <a href="#catalogo">CATÁLOGO</a><span class="sep">|</span>
-    <a href="#nosotros">NOSOTROS</a><span class="sep">|</span>
+    <a href="#info">NOSOTROS</a><span class="sep">|</span>
     <a href="#registro">REGÍSTRATE</a><span class="sep">|</span>
     <a href="#contacto">CONTACTO</a>
   </nav>
@@ -851,22 +842,6 @@ footer span{color:var(--dorado-claro)}
     <p class="loading-msg">Cargando catálogo...</p>
   </div>
 </section>
-
-<section id="nosotros" class="nosotros">
-  <div class="inner">
-    <div class="about-inner">
-      <div class="title"><h2>Sobre <span>Rochél</span></h2><p>Hecho con amor en Santa Cruz, Bolivia</p><div class="divider"></div></div>
-      <p>Rochél nació del deseo de crear accesorios que cuenten historias. Cada arete, cada manilla y cada collar está pensado para acompañarte en tu día a día.</p>
-      <p>Creemos que los pequeños detalles hacen la diferencia, y que brillar no tiene que ser complicado.</p>
-      <div class="about-valores">
-        <div class="valor"><div class="icono">✨</div><h4>Calidad</h4><p>Acero inoxidable resistente y hipoalergénico que dura contigo.</p></div>
-        <div class="valor"><div class="icono">🤍</div><h4>Hecho a mano</h4><p>Cada pieza tejida con dedicación y atención al detalle.</p></div>
-        <div class="valor"><div class="icono">💛</div><h4>Amor</h4><p>Diseños pensados para que te sientas única y especial.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 <section id="registro" class="registro">
   <div class="registro-inner">
