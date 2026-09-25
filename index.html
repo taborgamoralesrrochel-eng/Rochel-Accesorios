@@ -1756,10 +1756,9 @@ msg.innerHTML = '¡Registro enviado correctamente! 💗 Ahora puedes continuar p
 localStorage.setItem('rochelUsuarioEmail', email);
 localStorage.setItem('rochelUsuarioNombre', nombre);
 
-      window.open(
-        'https://wa.me/' + WHATSAPP + '?text=' + mensajeWhatsApp,
-        '_blank'
-      );
+      /* Ir directamente a WhatsApp */
+      window.location.href =
+  'https://wa.me/' + WHATSAPP + '?text=' + mensajeWhatsApp;
 
       form.reset();
     } catch(error) {
