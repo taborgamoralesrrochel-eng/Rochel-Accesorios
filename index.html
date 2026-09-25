@@ -82,6 +82,29 @@ header{position:sticky;top:0;z-index:100}
 .precio-actual::before{content:'Bs ';font-size:15px;color:var(--dorado)}
 .btn-consultar{display:inline-block;background:linear-gradient(135deg,#25D366,#1da851);color:#fff;padding:11px 20px;border-radius:25px;text-decoration:none;font-size:14px;font-weight:700;text-align:center;transition:all .3s;box-shadow:0 4px 12px rgba(37,211,102,.25)}
 .btn-consultar:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(37,211,102,.35)}
+  /* BOTÓN COMPARTIR PRODUCTO */
+
+.btn-compartir{
+  width:100%;
+  margin-top:10px;
+  padding:10px 18px;
+  background:rgba(255,255,255,.78);
+  color:var(--rosa-profundo);
+  border:1.5px solid var(--dorado-suave);
+  border-radius:25px;
+  font-family:'Nunito Sans',sans-serif;
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+  transition:all .25s ease;
+}
+
+.btn-compartir:hover{
+  transform:translateY(-2px);
+  background:var(--rosa-claro);
+  border-color:var(--dorado);
+  box-shadow:0 6px 16px rgba(176,106,143,.12);
+}
 .empty-msg,.loading-msg{grid-column:1/-1;text-align:center;padding:50px 20px;font-size:16px}
 .empty-msg{color:var(--texto-suave);font-style:italic}
 .loading-msg{color:var(--rosa-profundo);font-weight:600}
@@ -1128,6 +1151,7 @@ function renderProducts() {
         (categoria ? '<p class="meta"><strong>Categoría:</strong> ' + categoria + '</p>' : '') +
         '<div class="precios"><span class="precio-actual">' + precio + '</span></div>' +
 '<button class="btn-consultar" type="button" data-nombre="' + encodeURIComponent(nombre) + '" data-precio="' + encodeURIComponent(precio) + '" data-categoria="' + encodeURIComponent(categoria) + '">Consultar por WhatsApp</button>' +
+'<button class="btn-compartir" type="button" data-nombre="' + encodeURIComponent(nombre) + '" data-precio="' + encodeURIComponent(precio) + '" data-categoria="' + encodeURIComponent(categoria) + '">↗ Compartir esta joyita</button>' +
       '</div></div>';
   }).join('');
 }
@@ -1186,6 +1210,192 @@ document.addEventListener('click', function(e) {
     });
   }
 });
+  /* =========================================================
+   COMPARTIR PRODUCTO + REGISTRAR EN GOOGLE SHEETS
+   ========================================================= */
+
+document.addEventListener('click', async function(e) {
+
+  const botonCompartir = e.target.closest('.btn-compartir');
+
+  if (!botonCompartir) return;
+
+
+  // Datos del producto
+  const nombre = decodeURIComponent(
+    botonCompartir.dataset.nombre || ''
+  );
+
+  const precio = decodeURIComponent(
+    botonCompartir.dataset.precio || ''
+  );
+
+  const categoria = decodeURIComponent(
+    botonCompartir.dataset.categoria || ''
+  );
+
+
+  // Recuperar correo del usuario registrado
+  const emailUsuario =
+    localStorage.getItem('rochelUsuarioEmail');
+
+
+  // Si todavía no se registró
+  if (!emailUsuario) {
+
+    alert(
+      '💗 Para compartir una joyita, primero debes registrarte en Rochél.'
+    );
+
+    const registro = document.getElementById('registro');
+
+    if (registro) {
+      registro.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+
+    return;
+  }
+
+
+  // Texto que se compartirá
+  const texto =
+    '✨ Mira esta joyita de Rochél Accesorios 💗\n\n' +
+    '💎 ' + nombre + '\n' +
+    (categoria ? '✨ Categoría: ' + categoria + '\n' : '') +
+    (precio ? '💗 Precio: Bs ' + precio + '\n' : '') +
+    '\n¡Me encantó! ✨';
+
+
+  const enlace =
+    window.location.origin +
+    window.location.pathname +
+    '#catalogo';
+
+
+  /* =========================================
+     NAVEGADORES CON MENÚ NATIVO DE COMPARTIR
+     ========================================= */
+
+  if (navigator.share) {
+
+    try {
+
+      await navigator.share({
+        title: nombre + ' | Rochél Accesorios',
+        text: texto,
+        url: enlace
+      });
+
+
+      // Solo llegamos aquí si el compartir se completó
+      registrarProductoCompartido(
+        emailUsuario,
+        nombre
+      );
+
+
+    } catch(error) {
+
+      // Si simplemente cerró/canceló compartir,
+      // NO registramos nada en Google Sheets.
+
+      if (error.name !== 'AbortError') {
+        console.error('Error al compartir:', error);
+      }
+
+    }
+
+  } else {
+
+    /* =========================================
+       COMPUTADORAS/NAVEGADORES SIN navigator.share
+       ========================================= */
+
+    try {
+
+      await navigator.clipboard.writeText(
+        texto + '\n\n' + enlace
+      );
+
+
+      // Como el contenido fue copiado,
+      // registramos la acción.
+      registrarProductoCompartido(
+        emailUsuario,
+        nombre
+      );
+
+
+      const textoOriginal =
+        botonCompartir.innerHTML;
+
+      botonCompartir.innerHTML =
+        '✓ Enlace copiado';
+
+
+      setTimeout(function() {
+
+        botonCompartir.innerHTML =
+          textoOriginal;
+
+      }, 2200);
+
+
+    } catch(error) {
+
+      console.error(
+        'No se pudo copiar el producto:',
+        error
+      );
+
+    }
+
+  }
+
+});
+
+
+/* =========================================================
+   ENVIAR ACCIÓN DE COMPARTIR A GOOGLE SHEETS
+   ========================================================= */
+
+async function registrarProductoCompartido(email, producto) {
+
+  try {
+
+    const datos = new URLSearchParams();
+
+    datos.append('accion', 'compartir');
+    datos.append('email', email);
+    datos.append('producto', producto);
+
+
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: datos
+    });
+
+
+    console.log(
+      'Compartido registrado en Google Sheets:',
+      producto
+    );
+
+
+  } catch(error) {
+
+    console.error(
+      'Error registrando el producto compartido:',
+      error
+    );
+
+  }
+
+}
 function setupFilters() {
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1227,11 +1437,12 @@ document.addEventListener('DOMContentLoaded', loadProducts);
 
     formData.forEach((value, key) => datos.append(key, value));
 
-    const nombre = document.getElementById('nombre').value.trim();
-    const codigoPais = document.getElementById('codigoPais').value;
-    const telefono = document.getElementById('telefono').value.trim();
-    const interes = document.getElementById('interes').value || 'accesorios';
-    const comentarios = document.getElementById('comentarios').value.trim();
+const nombre = document.getElementById('nombre').value.trim();
+const email = document.getElementById('email').value.trim();
+const codigoPais = document.getElementById('codigoPais').value;
+const telefono = document.getElementById('telefono').value.trim();
+const interes = document.getElementById('interes').value || 'accesorios';
+const comentarios = document.getElementById('comentarios').value.trim();
 
 const mensajeWhatsApp =
   '✨ Hola, Rochél Accesorios 💗%0A' +
@@ -1253,8 +1464,14 @@ const mensajeWhatsApp =
         body:datos
       });
 
-      msg.className = 'registro-msg ok';
-      msg.innerHTML = '¡Registro enviado correctamente! 💗 Ahora puedes continuar por WhatsApp.';
+msg.className = 'registro-msg ok';
+msg.innerHTML = '¡Registro enviado correctamente! 💗 Ahora puedes continuar por WhatsApp.';
+
+/* Guardar usuario registrado en este navegador */
+localStorage.setItem('rochelUsuarioEmail', email);
+localStorage.setItem('rochelUsuarioNombre', nombre);
+
+window.open(
 
       window.open(
         'https://wa.me/' + WHATSAPP + '?text=' + mensajeWhatsApp,
