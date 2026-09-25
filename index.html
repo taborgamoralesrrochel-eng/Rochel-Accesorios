@@ -332,7 +332,7 @@ footer span{color:var(--dorado-claro)}
     <p>Joyitas de acero inoxidable y detalles tejidos pensados para acompañarte en cada momento.</p>
     <div class="buttons">
       <a class="btn primary" href="#catalogo">DESCUBRIR COLECCIÓN</a>
-      <a class="btn secondary" href="https://wa.me/59163501104" target="_blank">PEDIR POR WHATSAPP</a>
+      <a class="btn secondary" href="#registro">PEDIR POR WHATSAPP</a>
     </div>
   </div>
 </section>
@@ -467,21 +467,20 @@ footer span{color:var(--dorado-claro)}
 
           <div class="campo">
             <label for="interes">¿Qué te interesa?</label>
-            <select id="interes" name="interes">
-              <option value="">Selecciona una opción</option>
-              <option value="Aretes">Aretes</option>
-              <option value="Collares">Collares</option>
-              <option value="Manillas">Manillas</option>
-              <option value="Anillos">Anillos</option>
-            </select>
+<select id="interes" name="interes">
+  <option value="">Selecciona una opción</option>
+  <option value="Aretes">Aretes</option>
+  <option value="Collares">Collares</option>
+  <option value="Manillas">Manillas</option>
+  <option value="Pendientes">Pendientes</option>
+</select>
           </div>
 
           <div class="campo">
             <label for="contacto">Contacto preferido</label>
-            <select id="contacto" name="contacto">
-              <option value="">Selecciona una opción</option>
-              <option value="WhatsApp">WhatsApp</option>
-            </select>
+<select id="contacto" name="contacto">
+  <option value="WhatsApp" selected>WhatsApp</option>
+</select>
           </div>
 
           <div class="campo full">
@@ -573,8 +572,6 @@ function renderProducts() {
     const material = p.material || '';
     const color = p.color || '';
     const precio = p.precio || '';
-    const mensaje = encodeURIComponent('Hola Rochél Accesorios, quiero consultar por: ' + nombre + ' (Bs ' + precio + ')');
-    const waLink = 'https://wa.me/' + WHATSAPP + '?text=' + mensaje;
     return '<div class="product">' +
       '<div class="product-img-wrap">' + (imagen ? '<img src="' + imagen + '" alt="' + nombre + '" loading="lazy" onerror="this.style.display=\'none\'">' : '') + '</div>' +
       '<div class="info">' +
@@ -584,11 +581,65 @@ function renderProducts() {
         (color ? '<p class="meta"><strong>Color:</strong> ' + color + '</p>' : '') +
         (categoria ? '<p class="meta"><strong>Categoría:</strong> ' + categoria + '</p>' : '') +
         '<div class="precios"><span class="precio-actual">' + precio + '</span></div>' +
-        '<a class="btn-consultar" href="' + waLink + '" target="_blank">Consultar por WhatsApp</a>' +
+'<button class="btn-consultar" type="button" data-nombre="' + encodeURIComponent(nombre) + '" data-precio="' + encodeURIComponent(precio) + '" data-categoria="' + encodeURIComponent(categoria) + '">Consultar por WhatsApp</button>' +
       '</div></div>';
   }).join('');
 }
+document.addEventListener('click', function(e) {
+  const boton = e.target.closest('.btn-consultar');
+  if (!boton) return;
 
+  const nombre = decodeURIComponent(boton.dataset.nombre || '');
+  const precio = decodeURIComponent(boton.dataset.precio || '');
+  const categoria = decodeURIComponent(boton.dataset.categoria || '');
+
+  // Mostrar el producto seleccionado
+  const registro = document.getElementById('registro');
+  const interes = document.getElementById('interes');
+
+  // Colocar automáticamente la categoría REAL de Google Sheets
+  if (interes && categoria) {
+    interes.value = categoria;
+  }
+
+  // Crear aviso del producto seleccionado
+  let aviso = document.getElementById('producto-seleccionado');
+
+  if (!aviso) {
+    aviso = document.createElement('div');
+    aviso.id = 'producto-seleccionado';
+    aviso.className = 'producto-seleccionado';
+
+    const form = document.getElementById('registroForm');
+
+    if (form) {
+      form.parentNode.insertBefore(aviso, form);
+    }
+  }
+
+  aviso.style.display = 'block';
+  aviso.innerHTML =
+    '✨ Estás consultando por: <strong>' +
+    nombre +
+    '</strong>' +
+    (precio ? ' · Bs ' + precio : '') +
+    '<br><small>Categoría: ' + categoria + '</small>';
+
+  // Guardamos el producto seleccionado
+  window.productoSeleccionado = {
+    nombre: nombre,
+    precio: precio,
+    categoria: categoria
+  };
+
+  // Ir al registro
+  if (registro) {
+    registro.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+});
 function setupFilters() {
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
