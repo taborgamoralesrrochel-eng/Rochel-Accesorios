@@ -16,6 +16,99 @@ header{position:sticky;top:0;z-index:100}
 .topbar-inner{max-width:1300px;margin:auto;height:2.5cm;padding:0 25px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
 .icon-btn{background:rgba(255,255,255,.85);border:none;color:var(--texto);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;transition:all .3s;text-decoration:none}
 .icon-btn:hover{background:#fff;color:var(--rosa-profundo);box-shadow:0 4px 12px rgba(176,106,143,.2)}
+  /* =========================================
+   BUSCADOR ROCHÉL
+========================================= */
+
+.buscador-rochel{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:200;
+
+  padding:18px 25px;
+
+  background:rgba(255,255,255,.97);
+  border-bottom:1px solid var(--dorado-suave);
+  box-shadow:0 10px 30px rgba(120,70,110,.12);
+
+  transform:translateY(-120%);
+  opacity:0;
+  visibility:hidden;
+
+  transition:
+    transform .35s ease,
+    opacity .35s ease,
+    visibility .35s;
+}
+
+.buscador-rochel.activo{
+  transform:translateY(0);
+  opacity:1;
+  visibility:visible;
+}
+
+.buscador-contenido{
+  max-width:750px;
+  margin:auto;
+
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  padding:8px 18px;
+
+  background:#fff;
+  border:1.5px solid var(--rosa-medio);
+  border-radius:40px;
+
+  box-shadow:0 6px 20px rgba(176,106,143,.10);
+}
+
+.buscador-icono{
+  color:var(--dorado);
+  font-size:22px;
+}
+
+#input-buscar{
+  flex:1;
+  border:none;
+  outline:none;
+  background:transparent;
+
+  font-family:'Nunito Sans',sans-serif;
+  font-size:15px;
+  color:var(--texto);
+
+  padding:8px 2px;
+}
+
+#input-buscar::placeholder{
+  color:#a58d98;
+}
+
+#cerrar-buscador{
+  width:34px;
+  height:34px;
+
+  border:none;
+  border-radius:50%;
+
+  background:var(--rosa-claro);
+  color:var(--rosa-profundo);
+
+  font-size:23px;
+  line-height:1;
+  cursor:pointer;
+
+  transition:all .25s ease;
+}
+
+#cerrar-buscador:hover{
+  background:var(--rosa-suave);
+  transform:rotate(90deg);
+}
 .topbar-actions{display:flex;justify-content:flex-end;gap:6px}
 .logo-center{justify-self:center;display:flex;align-items:center;justify-content:center;text-decoration:none}
 .logo-img{display:block;height:2cm;width:auto;max-width:320px;object-fit:contain}
@@ -802,7 +895,25 @@ footer span{color:var(--dorado-claro)}
   <a href="#contacto">CONTACTO</a>
 </nav>
 </header>
+<!-- BUSCADOR ROCHÉL -->
+<div id="buscador-rochel" class="buscador-rochel">
+  <div class="buscador-contenido">
 
+    <span class="buscador-icono">⌕</span>
+
+    <input
+      type="search"
+      id="input-buscar"
+      placeholder="Buscar aretes, collares, acero, dorado..."
+      autocomplete="off"
+    >
+
+    <button type="button" id="cerrar-buscador" aria-label="Cerrar buscador">
+      ×
+    </button>
+
+  </div>
+</div>
 <main>
 <section class="hero" id="inicio">
   <div class="hero-photo"></div><div class="hero-overlay"></div>
@@ -959,7 +1070,6 @@ footer span{color:var(--dorado-claro)}
 
           <div class="registro-actions">
             <button type="submit" class="btn primary btn-registro">CREAR MI REGISTRO</button>
-            <a class="btn secondary" href="#contacto">IR A CONTACTO</a>
             <div id="registroMsg" class="registro-msg"></div>
           </div>
         </form>
@@ -1099,6 +1209,44 @@ const WHATSAPP = '59163501104';
 let allProducts = [];
 let currentCategoria = 'todo';
 let currentSort = 'recientes';
+
+  /* =========================================
+   ABRIR Y CERRAR BUSCADOR
+========================================= */
+
+document.addEventListener('DOMContentLoaded', function() {
+
+  const btnBuscar = document.getElementById('btn-buscar');
+  const buscador = document.getElementById('buscador-rochel');
+  const inputBuscar = document.getElementById('input-buscar');
+  const cerrarBuscador = document.getElementById('cerrar-buscador');
+
+  if (!btnBuscar || !buscador || !inputBuscar || !cerrarBuscador) return;
+
+  /* ABRIR */
+  btnBuscar.addEventListener('click', function() {
+    buscador.classList.add('activo');
+
+    setTimeout(function() {
+      inputBuscar.focus();
+    }, 300);
+  });
+
+  /* CERRAR */
+  cerrarBuscador.addEventListener('click', function() {
+    buscador.classList.remove('activo');
+    inputBuscar.value = '';
+  });
+
+  /* CERRAR CON ESC */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      buscador.classList.remove('activo');
+      inputBuscar.value = '';
+    }
+  });
+
+});
 
 async function loadProducts() {
   const container = document.getElementById('products-container');
