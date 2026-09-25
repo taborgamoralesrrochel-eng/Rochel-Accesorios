@@ -1244,9 +1244,143 @@ document.addEventListener('DOMContentLoaded', function() {
       buscador.classList.remove('activo');
       inputBuscar.value = '';
     }
+ /* BUSCAR PRODUCTOS MIENTRAS ESCRIBE */
+inputBuscar.addEventListener('input', function() {
+
+  const texto = inputBuscar.value
+    .toLowerCase()
+    .trim();
+
+  /* Si está vacío, mostrar catálogo completo */
+  if (texto === '') {
+    currentCategoria = 'todo';
+
+    document.querySelectorAll('.filter-btn').forEach(function(btn) {
+      btn.classList.toggle(
+        'active',
+        btn.dataset.categoria === 'todo'
+      );
+    });
+
+    renderProducts();
+    return;
+  }
+
+  /* Buscar coincidencias */
+  const resultados = allProducts.filter(function(producto) {
+
+    const nombre = String(producto.nombre || '').toLowerCase();
+    const descripcion = String(producto.descripcion || '').toLowerCase();
+    const categoria = String(producto.categoria || '').toLowerCase();
+    const material = String(producto.material || '').toLowerCase();
+    const color = String(producto.color || '').toLowerCase();
+
+    return (
+      nombre.includes(texto) ||
+      descripcion.includes(texto) ||
+      categoria.includes(texto) ||
+      material.includes(texto) ||
+      color.includes(texto)
+    );
+  });
+
+  mostrarResultadosBusqueda(resultados, texto);
+
+});
   });
 
 });
+  function mostrarResultadosBusqueda(resultados, texto) {
+
+  const container = document.getElementById('products-container');
+
+  if (!container) return;
+
+  if (resultados.length === 0) {
+    container.innerHTML =
+      '<p class="empty-msg">💗 No encontramos joyitas para “' +
+      texto +
+      '”. Intenta con otra búsqueda.</p>';
+
+    return;
+  }
+
+  container.innerHTML = resultados.map(function(p) {
+
+    const nombre = p.nombre || '';
+    const descripcion = p.descripcion || '';
+    const imagen = p.url_imagen || '';
+    const categoria = p.categoria || '';
+    const material = p.material || '';
+    const color = p.color || '';
+    const precio = p.precio || '';
+
+    return '<div class="product">' +
+
+      '<div class="product-img-wrap">' +
+        (imagen
+          ? '<img src="' + imagen + '" alt="' + nombre + '" loading="lazy">'
+          : '') +
+      '</div>' +
+
+      '<div class="info">' +
+
+        '<h3>' + nombre + '</h3>' +
+
+        '<p class="descripcion">' +
+          descripcion +
+        '</p>' +
+
+        (material
+          ? '<p class="meta"><strong>Material:</strong> ' +
+            material +
+            '</p>'
+          : '') +
+
+        (color
+          ? '<p class="meta"><strong>Color:</strong> ' +
+            color +
+            '</p>'
+          : '') +
+
+        (categoria
+          ? '<p class="meta"><strong>Categoría:</strong> ' +
+            categoria +
+            '</p>'
+          : '') +
+
+        '<div class="precios">' +
+          '<span class="precio-actual">' +
+            precio +
+          '</span>' +
+        '</div>' +
+
+        '<button class="btn-consultar" type="button" ' +
+          'data-nombre="' + encodeURIComponent(nombre) + '" ' +
+          'data-precio="' + encodeURIComponent(precio) + '" ' +
+          'data-categoria="' + encodeURIComponent(categoria) + '">' +
+          'Consultar por WhatsApp' +
+        '</button>' +
+
+        '<button class="btn-compartir" type="button" ' +
+          'data-nombre="' + encodeURIComponent(nombre) + '" ' +
+          'data-precio="' + encodeURIComponent(precio) + '" ' +
+          'data-categoria="' + encodeURIComponent(categoria) + '">' +
+          '↗ Compartir esta joyita' +
+        '</button>' +
+
+      '</div>' +
+
+    '</div>';
+
+  }).join('');
+
+  /* Bajar automáticamente al catálogo */
+  document.getElementById('catalogo').scrollIntoView({
+    behavior:'smooth',
+    block:'start'
+  });
+}
 
 async function loadProducts() {
   const container = document.getElementById('products-container');
