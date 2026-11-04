@@ -1764,7 +1764,7 @@ document.addEventListener('DOMContentLoaded', loadProducts);
       msg.className = resultado.correoEnviado ? 'registro-msg ok' : 'registro-msg error';
       msg.textContent = resultado.correoEnviado
         ? 'Registro guardado y correo enviado por el sistema. Revisa Recibidos, Spam y Promociones.'
-        : 'Registro guardado, pero el correo NO se pudo enviar. Revisa Apps Script > Ejecuciones.';
+        : 'Registro guardado, pero el correo no se envió. Motivo: ' + (resultado.errorCorreo || 'No identificado. Revisa los permisos de MailApp.');
       if (!resultado.correoEnviado) return;
       form.reset();
       window.productoSeleccionado = null;
@@ -1791,7 +1791,7 @@ document.addEventListener('DOMContentLoaded', loadProducts);
 
 
 
-/* ===== CONSULTA REAL DEL RESULTADO, BASADA EN TRÁMITE FÁCIL SCZ ===== */
+/* ===== CONSULTA REAL DEL RESULTADO  ===== */
 function estadoRochelJSONP(id) {
   return new Promise((resolve, reject) => {
     const callback = 'rochelEstado_' + Math.random().toString(36).slice(2);
