@@ -1673,6 +1673,7 @@ document.addEventListener('DOMContentLoaded', loadProducts);
 
 
 
+
 /* ===== REGISTRO INICIAL DEL CLIENTE ===== */
 
 (function() {
@@ -1700,19 +1701,15 @@ document.addEventListener('DOMContentLoaded', loadProducts);
 
     const datos = new URLSearchParams(new FormData(form));
 
-    // Columna J de Google Sheets
-    datos.set(
-      'producto',
-      producto ? producto.nombre : ''
-    );
-
-    // Columna K de Google Sheets
-    datos.set(
-      'categoria',
-      producto ? producto.categoria : ''
-    );
-
+    datos.set('accion', 'registro');
+    datos.set('producto', producto ? producto.nombre : '');
+    datos.set('categoria', producto ? producto.categoria : '');
     datos.set('token', token);
+
+    // Campo antispam, si está presente en el formulario.
+    if (!datos.has('website')) {
+      datos.set('website', '');
+    }
 
     msg.className = 'registro-msg ok';
     msg.textContent = 'Enviando tu registro...';
@@ -1724,17 +1721,19 @@ document.addEventListener('DOMContentLoaded', loadProducts);
         body: datos
       });
 
+      // IMPORTANTE:
+      // no-cors no permite comprobar la respuesta del servidor.
       guardarRegistro(nombre, email, token);
 
       msg.className = 'registro-msg ok';
       msg.textContent =
-        'Registro enviado. Tu acceso durará 7 días 💗';
+        'Solicitud enviada. Revisa tu correo electrónico, ' +
+        'incluida la carpeta Spam.';
 
       form.reset();
       window.productoSeleccionado = null;
 
       const aviso = document.getElementById('producto-seleccionado');
-
       if (aviso) aviso.style.display = 'none';
 
       abrirWhatsApp(
@@ -1752,13 +1751,14 @@ document.addEventListener('DOMContentLoaded', loadProducts);
 
       msg.className = 'registro-msg error';
       msg.textContent =
-        'No pudimos enviar el registro. Intenta nuevamente.';
+        'No pudimos enviar la solicitud. Intenta nuevamente.';
 
     } finally {
       boton.disabled = false;
     }
   });
 })();
+
 
 /* ===== EFECTO PARALLAX EN LA PORTADA ===== */
 (function() {
