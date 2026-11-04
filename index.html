@@ -874,6 +874,12 @@ footer span{color:var(--dorado-claro)}
   }
 
 }
+.campo-antispam{position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.privacidad-rochel{background:#fffafc;padding:55px 24px;border-top:1px solid var(--dorado-suave)}
+.privacidad-contenido{max-width:950px;margin:auto;color:var(--texto-suave)}
+.privacidad-contenido h2{color:var(--rosa-profundo);margin-bottom:16px;font-size:30px}
+.privacidad-contenido p{margin:0 0 14px;line-height:1.75}
+.privacidad-contenido a,.terminos a{color:var(--rosa-profundo);text-decoration:underline}
 </style>
 </head>
 <body>
@@ -1083,9 +1089,15 @@ footer span{color:var(--dorado-claro)}
             <textarea id="comentarios" name="comentarios" placeholder="Cuéntanos qué estás buscando o si tienes alguna consulta..."></textarea>
           </div>
 
+          <!-- Campo antispam: debe permanecer vacío -->
+          <div class="campo full campo-antispam" aria-hidden="true">
+            <label for="website">Sitio web (dejar vacío)</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
           <label class="terminos">
             <input type="checkbox" id="terminos" name="terminos" value="Sí" required>
-            <span>Acepto que Rochél utilice estos datos para atender mi registro y responder mis consultas. <strong>*</strong></span>
+            <span>Acepto que Rochél utilice mis datos para atender mi registro, responder consultas y enviarme la confirmación por correo. He leído la <a href="#privacidad">política de privacidad</a>. <strong>*</strong></span>
           </label>
 
           <div class="registro-actions">
@@ -1218,6 +1230,16 @@ footer span{color:var(--dorado-claro)}
 
   </div>
 
+</section>
+
+<section id="privacidad" class="privacidad-rochel" aria-labelledby="titulo-privacidad">
+  <div class="privacidad-contenido">
+    <h2 id="titulo-privacidad">Política de privacidad</h2>
+    <p>Rochél Accesorios recopila los datos que proporcionas en el formulario (nombre, correo electrónico, teléfono, dirección, ciudad, preferencias, consultas y fecha deseada) para gestionar tu registro, atender solicitudes, coordinar pedidos y enviarte un correo de confirmación.</p>
+    <p>La información se registra en una hoja de Google Sheets de uso administrativo. Podemos utilizar WhatsApp y el correo electrónico para responder a tus consultas. No publicamos tus datos personales en el catálogo de la tienda.</p>
+    <p>El registro de acceso para realizar consultas desde el navegador tiene una vigencia de siete días; esto no significa que los datos de la hoja se eliminen automáticamente al terminar ese plazo.</p>
+    <p>Para solicitar la corrección o eliminación de tus datos, comunícate con Rochél Accesorios mediante la sección <a href="#contacto">Contacto</a>.</p>
+  </div>
 </section>
 </main>
 
@@ -1732,12 +1754,13 @@ document.addEventListener('DOMContentLoaded', loadProducts);
 
       // IMPORTANTE:
       // no-cors no permite comprobar la respuesta del servidor.
+      // Si el servidor rechaza los datos, habrá que revisar Apps Script > Ejecuciones.
       guardarRegistro(nombre, email, token);
 
       msg.className = 'registro-msg ok';
       msg.textContent =
-        'Solicitud enviada. Revisa tu correo electrónico, ' +
-        'incluida la carpeta Spam.';
+        'Solicitud enviada. Si el servidor la procesa correctamente, ' +
+        'recibirás una confirmación por correo. Revisa también Spam.';
 
       form.reset();
       window.productoSeleccionado = null;
