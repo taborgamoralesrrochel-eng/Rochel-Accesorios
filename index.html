@@ -403,6 +403,7 @@ header{position:sticky;top:0;z-index:100}
 }
 footer{background:linear-gradient(135deg,var(--rosa-profundo),#8a4f70);color:#fce8f2;text-align:center;padding:30px;font-size:13px}
 footer span{color:var(--dorado-claro)}
+footer a{color:var(--dorado-claro);text-decoration:underline}
 @media(max-width:900px){.inicio-grid{grid-template-columns:1fr;gap:40px}.products{grid-template-columns:repeat(2,1fr)}.inicio-imagen img{height:380px}.registro-grid{grid-template-columns:1fr}.registro-presentacion{padding:34px 28px}}
 @media(max-width:800px){.topbar-inner{height:1.8cm;padding:0 12px;gap:8px}.logo-img{height:1.4cm;max-width:220px}.icon-btn{width:32px;height:32px}.menu-bar{gap:10px;padding:10px}.menu-bar a{font-size:10px;letter-spacing:1.5px}.hero-content{margin:25px auto;padding:36px 28px}.catalogo,.registro>.registro-inner{padding:70px 20px}.products{grid-template-columns:1fr}.filters-bar{flex-direction:column;align-items:stretch}.filter-group{justify-content:center}.registro-card{padding:27px 20px}.registro-form{grid-template-columns:1fr}.campo.full,.terminos,.registro-actions{grid-column:1}.registro-presentacion h2{font-size:38px}}
 /* =========================================
@@ -880,6 +881,30 @@ footer span{color:var(--dorado-claro)}
 .privacidad-contenido h2{color:var(--rosa-profundo);margin-bottom:16px;font-size:30px}
 .privacidad-contenido p{margin:0 0 14px;line-height:1.75}
 .privacidad-contenido a,.terminos a{color:var(--rosa-profundo);text-decoration:underline}
+
+/* =========================================
+   AYUDA / MANUAL DE USO
+========================================= */
+.ayuda-rochel{padding:90px 25px;background:linear-gradient(135deg,#fffafc,var(--beige));border-top:1px solid var(--dorado-suave)}
+.ayuda-inner{max-width:1100px;margin:auto}
+.ayuda-acciones{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:-15px 0 40px}
+.ayuda-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.ayuda-card{background:rgba(255,255,255,.95);border:1px solid var(--dorado-suave);border-radius:22px;padding:28px 30px;box-shadow:0 10px 30px rgba(120,70,110,.08)}
+.ayuda-card.full{grid-column:1/-1}
+.ayuda-card h3{font-size:23px;color:var(--rosa-profundo);margin-bottom:12px}
+.ayuda-card h3 small{display:block;font-family:'Nunito Sans',sans-serif;font-size:11px;letter-spacing:3px;color:var(--dorado);font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.ayuda-card p{font-size:15px;color:#65545d;line-height:1.75;margin-bottom:10px}
+.ayuda-card ul,.ayuda-card ol{margin:6px 0 10px 20px;color:#65545d;font-size:15px;line-height:1.75}
+.ayuda-card li{margin-bottom:6px}
+.ayuda-card strong{color:var(--rosa-profundo)}
+.ayuda-card a{color:var(--rosa-profundo);text-decoration:underline;word-break:break-word}
+.ayuda-card code{background:var(--rosa-claro);border:1px solid var(--rosa-suave);padding:1px 7px;border-radius:7px;font-size:13px;color:var(--rosa-profundo)}
+.ayuda-nota{margin-top:12px;padding:14px 18px;border-left:4px solid var(--dorado);background:rgba(243,227,179,.35);border-radius:0 14px 14px 0;font-size:14px;color:#51424a}
+.ayuda-tabla{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+.ayuda-tabla th,.ayuda-tabla td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--rosa-suave);vertical-align:top;color:#65545d}
+.ayuda-tabla th{color:var(--rosa-profundo);font-weight:700;background:var(--rosa-claro)}
+.ayuda-scroll{overflow-x:auto}
+@media(max-width:800px){.ayuda-rochel{padding:65px 18px}.ayuda-grid{grid-template-columns:1fr}.ayuda-card{padding:22px 20px}}
 </style>
 </head>
 <body>
@@ -895,7 +920,10 @@ footer span{color:var(--dorado-claro)}
 </button>
       <a href="#inicio" class="logo-center"><img class="logo-img" src="https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/img/logos/logo_transparente.png" alt="Rochél Accesorios"></a>
       <div class="topbar-actions">
-        <a class="icon-btn" href="https://www.instagram.com/rochelaccesorios.2026/" target="_blank" aria-label="Instagram">
+        <a class="icon-btn" href="#ayuda" aria-label="Ayuda y manual de uso" title="Ayuda / Manual">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        </a>
+        <a class="icon-btn" href="https://www.instagram.com/rochelaccesorios.2026/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
         </a>
         <a class="icon-btn" href="#registro" data-contacto-general aria-label="WhatsApp">
@@ -909,7 +937,8 @@ footer span{color:var(--dorado-claro)}
   <a href="#info">NOSOTROS</a><span class="sep">|</span>
   <a href="#catalogo">CATÁLOGO</a><span class="sep">|</span>
   <a href="#registro">REGÍSTRATE</a><span class="sep">|</span>
-  <a href="#contacto">CONTACTO</a>
+  <a href="#contacto">CONTACTO</a><span class="sep">|</span>
+  <a href="#ayuda">AYUDA</a>
 </nav>
 </header>
 <!-- BUSCADOR ROCHÉL -->
@@ -1232,6 +1261,137 @@ footer span{color:var(--dorado-claro)}
 
 </section>
 
+<!-- =========================
+     AYUDA / MANUAL DE USO
+========================= -->
+<section id="ayuda" class="ayuda-rochel" aria-labelledby="titulo-ayuda">
+  <div class="ayuda-inner">
+
+    <div class="title">
+      <h2 id="titulo-ayuda">Ayuda y <span>Manual de uso</span></h2>
+      <p>Todo lo que necesitas para usar y mantener el sitio de Rochél Accesorios</p>
+      <div class="divider"></div>
+    </div>
+
+    <div class="ayuda-acciones">
+      <!-- Sube el PDF a tu repositorio en esta ruta: manual/Manual_Rochel_Accesorios.pdf -->
+      <a class="btn primary" href="manual/Manual_Rochel_Accesorios.pdf" target="_blank" rel="noopener noreferrer">📄 VER MANUAL EN PDF</a>
+      <a class="btn secondary" href="manual/Manual_Rochel_Accesorios.pdf" download>⬇ DESCARGAR PDF</a>
+    </div>
+
+    <div class="ayuda-grid">
+
+      <!-- 1. PORTADA -->
+      <div class="ayuda-card full">
+        <h3><small>1 · Portada</small>Rochél Accesorios</h3>
+        <p><strong>Propósito:</strong> catálogo en línea de joyitas de acero inoxidable y manillas tejidas, con un registro de clientes y consultas directas por WhatsApp.</p>
+        <p><strong>URL pública:</strong> <a href="https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/" target="_blank" rel="noopener noreferrer">https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/</a></p>
+      </div>
+
+      <!-- 2. NAVEGACIÓN -->
+      <div class="ayuda-card full">
+        <h3><small>2 · Navegación</small>Secciones del sitio</h3>
+        <div class="ayuda-scroll">
+          <table class="ayuda-tabla">
+            <thead><tr><th>Sección</th><th>Qué encuentras</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Inicio</strong></td><td>Portada con los botones «Descubrir colección» y «Pedir por WhatsApp».</td></tr>
+              <tr><td><strong>Nosotros</strong></td><td>Quiénes somos, materiales y beneficios de las piezas.</td></tr>
+              <tr><td><strong>Catálogo</strong></td><td>Productos cargados desde la hoja de Google. Se pueden filtrar por categoría, ordenar por precio o nombre y buscar con la lupa (esquina superior izquierda).</td></tr>
+              <tr><td><strong>Regístrate</strong></td><td>Formulario de registro de clientes.</td></tr>
+              <tr><td><strong>Contacto</strong></td><td>Accesos a WhatsApp e Instagram.</td></tr>
+              <tr><td><strong>Ayuda</strong></td><td>Esta sección: manual de uso y ficha técnica.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 3. FORMULARIO -->
+      <div class="ayuda-card">
+        <h3><small>3 · Formulario</small>Paso a paso</h3>
+        <ol>
+          <li>Ve a la sección <strong>Regístrate</strong> (o pulsa «Consultar por WhatsApp» en cualquier producto).</li>
+          <li>Completa los campos obligatorios.</li>
+          <li>Marca la casilla de aceptación de la política de privacidad.</li>
+          <li>Pulsa <strong>CREAR MI REGISTRO</strong> y espera unos segundos.</li>
+          <li>Verás el mensaje de confirmación y se abrirá WhatsApp con tu mensaje listo para enviar.</li>
+        </ol>
+        <p><strong>Campos obligatorios (*):</strong> nombre completo, correo electrónico, teléfono/WhatsApp, código de país, ciudad, dirección y aceptar la política de privacidad.</p>
+        <p><strong>Opcionales:</strong> interés, contacto preferido, fecha deseada de entrega o retiro y comentarios.</p>
+        <div class="ayuda-nota"><strong>Confirmación al enviar:</strong> aparece en verde «Registro guardado y correo enviado por el sistema». Revisa Recibidos, Spam y Promociones.</div>
+      </div>
+
+      <!-- DATOS DE PRUEBA PARA EVALUACIÓN -->
+      <div class="ayuda-card">
+        <h3><small>Evaluación</small>Acceso y datos de prueba</h3>
+        <p><strong>El sitio no pide usuario ni contraseña.</strong> El registro es abierto: cualquier persona puede enviar el formulario.</p>
+        <p><strong>Token / código:</strong> no hay que escribirlo. Se genera automáticamente al enviar el registro y se guarda en el navegador durante 7 días.</p>
+        <p><strong>Cómo registrar un dato de prueba:</strong></p>
+        <ol>
+          <li>Abre la URL pública y ve a <strong>Regístrate</strong>.</li>
+          <li>Nombre: <code>Prueba Evaluación</code></li>
+          <li>Correo: un correo al que tengas acceso (ahí llegará la confirmación).</li>
+          <li>Teléfono: <code>70000000</code> · Código de país: <code>Bolivia (+591)</code></li>
+          <li>Ciudad: <code>Santa Cruz de la Sierra</code> · Dirección: <code>Zona de prueba</code></li>
+          <li>Marca la casilla de privacidad y pulsa <strong>CREAR MI REGISTRO</strong>.</li>
+          <li>Resultado esperado: mensaje verde de confirmación, correo recibido y una nueva fila en la hoja de Google «Registros».</li>
+        </ol>
+        <div class="ayuda-nota">Para ver la hoja, el grupo concede acceso de <strong>lectura</strong> al evaluador (indicado en la entrega de Classroom).</div>
+      </div>
+
+      <!-- 4. DATOS -->
+      <div class="ayuda-card">
+        <h3><small>4 · Datos</small>Dónde quedan y quién accede</h3>
+        <ul>
+          <li>Los registros y consultas se guardan en una <strong>hoja de Google Sheets</strong> administrativa, conectada mediante <strong>Google Apps Script</strong>.</li>
+          <li>El catálogo se lee de esa misma hoja (nombre, descripción, material, color, categoría, precio e imagen).</li>
+          <li>Tienen acceso a la hoja únicamente el <strong>dueño de la cuenta</strong> y las personas con quienes él la comparta.</li>
+          <li>Los datos personales <strong>no se publican</strong> en el catálogo.</li>
+          <li>Para corregir o eliminar tus datos, escríbenos desde la sección <a href="#contacto">Contacto</a>.</li>
+        </ul>
+      </div>
+
+      <!-- 5. PROBLEMAS FRECUENTES -->
+      <div class="ayuda-card">
+        <h3><small>5 · Soporte</small>Problemas frecuentes</h3>
+        <div class="ayuda-scroll">
+          <table class="ayuda-tabla">
+            <thead><tr><th>Problema</th><th>Qué hacer</th></tr></thead>
+            <tbody>
+              <tr><td>«No se pudo cargar el catálogo»</td><td>Revisa tu conexión y recarga la página (Ctrl + F5).</td></tr>
+              <tr><td>No llega el correo</td><td>Revisa Spam y Promociones. Verifica que el correo esté bien escrito.</td></tr>
+              <tr><td>«El registro tarda más de lo esperado»</td><td>Espera un minuto y vuelve a intentar. Si persiste, avisa al soporte.</td></tr>
+              <tr><td>No se abre WhatsApp</td><td>Comprueba que tengas la aplicación instalada o usa WhatsApp Web.</td></tr>
+              <tr><td>Piden registrarse de nuevo</td><td>La sesión del navegador dura 7 días. Vuelve a completar el formulario.</td></tr>
+              <tr><td>No aparece una imagen</td><td>Recarga la página; si sigue igual, avisa al soporte.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:12px"><strong>Soporte del grupo:</strong> escríbenos por <a href="#registro" data-contacto-general>WhatsApp</a> o por <a href="https://www.instagram.com/rochelaccesorios.2026/" target="_blank" rel="noopener noreferrer">Instagram @rochelaccesorios.2026</a>.</p>
+      </div>
+
+      <!-- FICHA TÉCNICA -->
+      <div class="ayuda-card full">
+        <h3><small>Ficha técnica</small>Publicación y mantenimiento</h3>
+        <div class="ayuda-scroll">
+          <table class="ayuda-tabla">
+            <tbody>
+              <tr><th style="width:30%">Publicado en</th><td>GitHub Pages: <a href="https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/" target="_blank" rel="noopener noreferrer">taborgamoralesrrochel-eng.github.io/Rochel-Accesorios</a> (archivo <code>index.html</code> en el repositorio <code>Rochel-Accesorios</code>).</td></tr>
+              <tr><th>Hoja de Google</th><td>Hoja administrativa con las pestañas de catálogo, registros y consultas.</td></tr>
+              <tr><th>Apps Script</th><td>Aplicación web implementada como API: entrega el catálogo, guarda registros y consultas y envía el correo de confirmación.</td></tr>
+              <tr><th>Dueño de la cuenta</th><td>[Escribir aquí: nombre del grupo o cuenta institucional del proyecto]</td></tr>
+              <tr><th>Cambiar un texto</th><td>Abrir <code>index.html</code> en GitHub (botón ✏️ Editar), buscar el texto con Ctrl + F, modificarlo y pulsar <em>Commit changes</em>. Se actualiza en 1–2 minutos.</td></tr>
+              <tr><th>Cambiar o agregar un campo del formulario</th><td>1) Editar el bloque <code>&lt;div class="campo"&gt;</code> correspondiente en <code>index.html</code> (el atributo <code>name</code> es el nombre del dato). 2) En Apps Script, añadir ese mismo nombre en la función que guarda el registro y una columna en la hoja. 3) Volver a implementar el script.</td></tr>
+              <tr><th>Cambiar productos</th><td>Editar las filas de la hoja de catálogo; el sitio las muestra automáticamente.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <section id="privacidad" class="privacidad-rochel" aria-labelledby="titulo-privacidad">
   <div class="privacidad-contenido">
     <h2 id="titulo-privacidad">Política de privacidad</h2>
@@ -1243,7 +1403,7 @@ footer span{color:var(--dorado-claro)}
 </section>
 </main>
 
-<footer>© 2026 <span>Rochél Accesorios</span> · Santa Cruz, Bolivia</footer>
+<footer>© 2026 <span>Rochél Accesorios</span> · Santa Cruz, Bolivia · <a href="#ayuda">Ayuda / Manual</a></footer>
 
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgT_57PiBVvprIm5Si69iTqkQ5Gew-UtDp3aF3K0iCPKSwgZnt0KGJJ3lIMEzMf2EV/exec';
