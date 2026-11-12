@@ -905,6 +905,27 @@ footer a{color:var(--dorado-claro);text-decoration:underline}
 .ayuda-tabla th{color:var(--rosa-profundo);font-weight:700;background:var(--rosa-claro)}
 .ayuda-scroll{overflow-x:auto}
 @media(max-width:800px){.ayuda-rochel{padding:65px 18px}.ayuda-grid{grid-template-columns:1fr}.ayuda-card{padding:22px 20px}}
+
+/* CARRITO DE COMPRAS ROCHÉL */
+.carrito-boton{position:relative}
+.carrito-contador{position:absolute;top:-7px;right:-7px;min-width:19px;height:19px;padding:0 4px;border-radius:12px;background:var(--rosa-profundo);color:white;font:700 11px/19px 'Nunito Sans',sans-serif;text-align:center}
+.carrito-fondo{position:fixed;inset:0;background:rgba(40,25,35,.48);z-index:299;display:none}
+.carrito-fondo.abierto{display:block}
+.carrito-panel{position:fixed;right:0;top:0;bottom:0;width:min(430px,100%);background:#fffafc;z-index:300;box-shadow:-15px 0 45px rgba(50,25,40,.18);transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column}
+.carrito-panel.abierto{transform:translateX(0)}
+.carrito-cabecera{display:flex;justify-content:space-between;align-items:center;padding:23px;border-bottom:1px solid var(--rosa-suave)}
+.carrito-cabecera h2{font-size:25px;color:var(--rosa-profundo)}
+.carrito-cerrar{border:0;background:transparent;font-size:30px;cursor:pointer;color:var(--rosa-profundo)}
+.carrito-items{padding:18px 22px;overflow-y:auto;flex:1}
+.carrito-item{display:flex;gap:13px;padding:15px 0;border-bottom:1px solid var(--rosa-suave)}
+.carrito-item img{width:76px;height:76px;object-fit:cover;border-radius:12px;background:var(--rosa-suave)}
+.carrito-detalle{flex:1;min-width:0}.carrito-detalle strong{display:block;color:var(--rosa-profundo)}
+.carrito-cantidad{display:flex;align-items:center;gap:12px;margin-top:8px}.carrito-cantidad button{width:27px;height:27px;border:1px solid var(--rosa-medio);border-radius:7px;background:white;cursor:pointer}
+.carrito-eliminar{border:0;background:transparent;color:#9b4b6c;text-decoration:underline;cursor:pointer;font-size:12px}
+.carrito-pie{padding:22px;border-top:1px solid var(--rosa-suave);background:white}
+.carrito-total{display:flex;justify-content:space-between;font-size:20px;margin-bottom:15px;color:var(--rosa-profundo)}
+.carrito-pie .btn{width:100%;text-align:center}
+.carrito-vacio{text-align:center;padding:40px 10px;color:var(--texto-suave)}
 </style>
 </head>
 <body>
@@ -926,9 +947,9 @@ footer a{color:var(--dorado-claro);text-decoration:underline}
         <a class="icon-btn" href="https://www.instagram.com/rochelaccesorios.2026/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
         </a>
-        <a class="icon-btn" href="#registro" data-contacto-general aria-label="WhatsApp">
+        <button class="icon-btn carrito-boton" type="button" id="abrir-carrito" aria-label="Abrir carrito de compras" aria-controls="carrito-panel" aria-expanded="false">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-        </a>
+        <span class="carrito-contador" id="carrito-contador" hidden>0</span></button>
       </div>
     </div>
   </div>
@@ -960,6 +981,14 @@ footer a{color:var(--dorado-claro);text-decoration:underline}
 
   </div>
 </div>
+
+<div class="carrito-fondo" id="carrito-fondo"></div>
+<aside class="carrito-panel" id="carrito-panel" role="dialog" aria-modal="true" aria-label="Carrito de compras" aria-hidden="true">
+  <div class="carrito-cabecera"><h2>Mi carrito 🛍️</h2><button class="carrito-cerrar" type="button" id="cerrar-carrito" aria-label="Cerrar carrito">×</button></div>
+  <div class="carrito-items" id="carrito-items"></div>
+  <div class="carrito-pie"><div class="carrito-total"><strong>Total</strong><strong id="carrito-total">Bs 0,00</strong></div><button class="btn primary" type="button" id="ir-a-pagar">IR A PAGAR</button><p style="font-size:12px;text-align:center;margin-top:9px;color:#7a6670">Pedido por WhatsApp · No se cobra en esta página</p></div>
+</aside>
+
 <main>
 <section class="hero" id="inicio">
   <div class="hero-photo"></div><div class="hero-overlay"></div>
@@ -1277,6 +1306,8 @@ footer a{color:var(--dorado-claro);text-decoration:underline}
       <a class="btn primary" href="https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/Manual_Rochel_Accesorios.pdf" target="_blank" rel="noopener noreferrer">📄 VER MANUAL EN PDF</a>
       <a class="btn secondary" href="https://taborgamoralesrrochel-eng.github.io/Rochel-Accesorios/Manual_Rochel_Accesorios.pdf" download="Manual_Rochel_Accesorios.pdf">⬇ DESCARGAR PDF</a>
     </div>
+
+  </div>
 </section>
 
 <section id="privacidad" class="privacidad-rochel" aria-labelledby="titulo-privacidad">
@@ -1298,6 +1329,72 @@ const WHATSAPP = '59163501104';
 let allProducts = [];
 let currentCategoria = 'todo';
 let currentSort = 'recientes';
+const CARRITO_KEY = 'rochelCarrito';
+let carrito = [];
+try { const guardado = JSON.parse(localStorage.getItem(CARRITO_KEY) || '[]'); if (Array.isArray(guardado)) carrito = guardado.filter(p => p && p.nombre && Number.isFinite(p.precioNumero) && p.precioNumero >= 0 && Number.isInteger(p.cantidad) && p.cantidad > 0); } catch(e) { carrito = []; }
+function precioNumero(valor) {
+  let x = String(valor ?? '').replace(/Bs\.?/gi,'').replace(/\s/g,'');
+  if (x.includes(',') && x.includes('.')) x = x.lastIndexOf(',') > x.lastIndexOf('.') ? x.replace(/\./g,'').replace(',','.') : x.replace(/,/g,'');
+  else if (x.includes(',')) x = x.replace(',','.');
+  const n = Number(x); return Number.isFinite(n) && n >= 0 ? n : NaN;
+}
+function dinero(n) { return 'Bs ' + n.toLocaleString('es-BO',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function guardarCarrito() { localStorage.setItem(CARRITO_KEY,JSON.stringify(carrito)); pintarCarrito(); }
+function totalCarrito() { return carrito.reduce((a,p)=>a+p.precioNumero*p.cantidad,0); }
+function escaparHTML(v) { return String(v ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function agregarAlCarrito(p) {
+  const precio = precioNumero(p.precio);
+  if (!Number.isFinite(precio)) { alert('Este producto no tiene un precio válido.'); return; }
+  const existente = carrito.find(x=>x.nombre===p.nombre && x.precioNumero===precio && x.imagen===p.imagen);
+  if (existente) existente.cantidad++;
+  else carrito.push({...p,precioNumero:precio,cantidad:1});
+  guardarCarrito(); mostrarCarrito(true);
+}
+function pintarCarrito() {
+  const cantidad = carrito.reduce((a,p)=>a+p.cantidad,0);
+  const badge = document.getElementById('carrito-contador');
+  if (!badge) return;
+  badge.textContent = cantidad; badge.hidden = cantidad===0;
+  document.getElementById('carrito-total').textContent = dinero(totalCarrito());
+  document.getElementById('ir-a-pagar').disabled = cantidad===0;
+  document.getElementById('carrito-items').innerHTML = cantidad ? carrito.map((p,i)=>`<div class="carrito-item">${p.imagen?`<img src="${escaparHTML(p.imagen)}" alt="${escaparHTML(p.nombre)}">`:''}<div class="carrito-detalle"><strong>${escaparHTML(p.nombre)}</strong><span>${dinero(p.precioNumero)} c/u</span><div class="carrito-cantidad"><button type="button" data-carrito="menos" data-indice="${i}" aria-label="Disminuir cantidad">−</button><span>${p.cantidad}</span><button type="button" data-carrito="mas" data-indice="${i}" aria-label="Aumentar cantidad">+</button><button type="button" class="carrito-eliminar" data-carrito="quitar" data-indice="${i}">Eliminar</button></div></div></div>`).join('') : '<p class="carrito-vacio">Tu carrito está vacío. Agrega tus accesorios favoritos del catálogo.</p>';
+}
+function mostrarCarrito(abierto) {
+  document.getElementById('carrito-panel').classList.toggle('abierto',abierto);
+  document.getElementById('carrito-fondo').classList.toggle('abierto',abierto);
+  document.getElementById('carrito-panel').setAttribute('aria-hidden',String(!abierto));
+  document.getElementById('abrir-carrito').setAttribute('aria-expanded',String(abierto));
+  if (abierto) document.getElementById('cerrar-carrito').focus();
+  else document.getElementById('abrir-carrito').focus();
+}
+function resumenPedido() { return carrito.map(p=>`${p.cantidad} x ${p.nombre} — ${dinero(p.precioNumero*p.cantidad)}`).join('\n')+'\nTOTAL: '+dinero(totalCarrito()); }
+function whatsappPedido(registro, comentario, primeraVez) {
+  const texto = '💗 Hola, Rochél Accesorios ✨\n'+(primeraVez?'Acabo de registrarme.':'Quiero realizar un pedido.')+'\n\n👤 Nombre: '+registro.nombre+'\n\n🛍️ Mi pedido:\n'+resumenPedido()+(comentario?'\n\n💌 Comentarios: '+comentario:'')+'\n\n¿Podrían confirmar disponibilidad y coordinar el pago y la entrega?';
+  window.location.href='https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(texto);
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  pintarCarrito();
+  document.getElementById('abrir-carrito').addEventListener('click',()=>mostrarCarrito(true));
+  document.getElementById('cerrar-carrito').addEventListener('click',()=>mostrarCarrito(false));
+  document.getElementById('carrito-fondo').addEventListener('click',()=>mostrarCarrito(false));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('carrito-panel').classList.contains('abierto'))mostrarCarrito(false);});
+  document.getElementById('carrito-items').addEventListener('click',e=>{
+    const b=e.target.closest('[data-carrito]'); if(!b)return;
+    const i=Number(b.dataset.indice); if(!carrito[i])return;
+    if(b.dataset.carrito==='mas')carrito[i].cantidad++;
+    if(b.dataset.carrito==='menos')carrito[i].cantidad--;
+    if(b.dataset.carrito==='quitar'||carrito[i].cantidad<=0)carrito.splice(i,1);
+    guardarCarrito();
+  });
+  document.getElementById('ir-a-pagar').addEventListener('click',()=>{
+    if(!carrito.length)return;
+    mostrarCarrito(false);
+    llevarAlRegistro(null);
+    const aviso=document.getElementById('producto-seleccionado');
+    aviso.style.display='block'; aviso.textContent='🛍️ Tu pedido: '+carrito.map(p=>p.cantidad+' × '+p.nombre).join(', ')+' · Total '+dinero(totalCarrito())+'. Completa tu registro para continuar por WhatsApp.';
+  });
+});
+
 
 /* ===== REGISTRO VÁLIDO DURANTE 7 DÍAS ===== */
 
@@ -1602,7 +1699,7 @@ inputBuscar.addEventListener('input', function() {
           'data-precio="' + encodeURIComponent(precio) + '" ' +
           'data-categoria="' + encodeURIComponent(categoria) + '" ' +
 'data-imagen="' + encodeURIComponent(imagen) + '">' +
-          'Consultar por WhatsApp' +
+          'AGREGAR AL CARRITO' +
         '</button>' +
 
       '</div>' +
@@ -1676,7 +1773,7 @@ function renderProducts() {
 'data-precio="' + encodeURIComponent(precio) + '" ' +
 'data-categoria="' + encodeURIComponent(categoria) + '" ' +
 'data-imagen="' + encodeURIComponent(imagen) + '">' +
-'Consultar por WhatsApp</button>' +
+'AGREGAR AL CARRITO</button>' +
       '</div></div>';
   }).join('');
 }
@@ -1703,6 +1800,11 @@ document.addEventListener('click', async function(e) {
       categoria: decodeURIComponent(boton.dataset.categoria || ''),
       imagen: decodeURIComponent(boton.dataset.imagen || '')
     };
+  }
+
+  if (boton.matches('.btn-consultar')) {
+    agregarAlCarrito(producto);
+    return;
   }
 
   const registro = obtenerRegistro();
@@ -1774,14 +1876,16 @@ document.addEventListener('DOMContentLoaded', loadProducts);
     const codigoPais = document.getElementById('codigoPais').value;
     const comentarios = document.getElementById('comentarios').value.trim();
 
-    const producto = window.productoSeleccionado || null;
+    const esPedido = carrito.length > 0;
+    const producto = esPedido ? null : (window.productoSeleccionado || null);
     const token = crearToken();
 
     const datos = new URLSearchParams(new FormData(form));
 
     datos.set('accion', 'registro');
-    datos.set('producto', producto ? producto.nombre : '');
-    datos.set('categoria', producto ? producto.categoria : '');
+    datos.set('producto', esPedido ? carrito.map(p=>p.cantidad+' x '+p.nombre).join(', ') : (producto ? producto.nombre : ''));
+    datos.set('categoria', esPedido ? 'Pedido carrito' : (producto ? producto.categoria : ''));
+    if (esPedido) datos.set('comentarios', 'PEDIDO ROCHÉL\n'+resumenPedido()+(comentarios?'\nComentarios: '+comentarios:''));
     datos.set('token', token);
     const idSolicitud = crearToken().replace(/-/g, '');
     datos.set('idSolicitud', idSolicitud);
@@ -1817,6 +1921,13 @@ document.addEventListener('DOMContentLoaded', loadProducts);
       window.productoSeleccionado = null;
       const aviso = document.getElementById('producto-seleccionado');
       if (aviso) aviso.style.display = 'none';
+      if (esPedido) {
+        const pedidoTexto = resumenPedido();
+        const mensaje = '💗 Hola, Rochél Accesorios ✨\nAcabo de registrarme.\n\n👤 Nombre: '+nombre+'\n\n🛍️ Mi pedido:\n'+pedidoTexto+(comentarios?'\n💌 Comentarios: '+comentarios:'')+'\n📱 Teléfono: '+codigoPais+' '+telefono+'\n\n¿Podrían confirmar disponibilidad y coordinar el pago y la entrega?';
+        carrito=[]; guardarCarrito();
+        window.location.href='https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(mensaje);
+        return;
+      }
       abrirWhatsApp(
         { nombre, email, token }, producto,
         (comentarios ? comentarios : '') +
